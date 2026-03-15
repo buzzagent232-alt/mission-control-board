@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-15 13:00:26",
+  "last_updated": "2026-03-15 13:05:21",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -189,45 +189,45 @@
       "timestamp": "2026-03-15T17:27:22.157Z"
     }
   ],
-  "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
+  "openclaw_version": "Unknown",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
     "services": [
       {
         "name": "gog Installed",
-        "status": "working",
-        "detail": "/opt/homebrew/bin/gog"
+        "status": "blocked",
+        "detail": "gog not found"
       },
       {
         "name": "gog Auth",
-        "status": "working",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z true oauth"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Gmail",
-        "status": "working",
-        "detail": "ID DATE FROM SUBJECT LABELS THREAD 19cf260e3dc1a485 2026-03-15 11:42 buzzagent232@gmail.com Telegram agent Gmail test 6 SENT,INBOX - 19cf24c97802ab91 2026-03-15 11:20 buzzagent232@gmail.com Telegram agent test SENT,INBO\u2026"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Calendar",
-        "status": "working",
-        "detail": "ID NAME ROLE buzzagent232@gmail.com buzzagent232@gmail.com owner"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Drive",
-        "status": "working",
-        "detail": "ID NAME TYPE SIZE MODIFIED 1oDNHMZtuoDgOZN6iRIN2-3b5JJEoDzQL7whPGQSaIEg Test Sheet file 1.0 KB 2026-03-15 15:46 1Pa_CVn4tzvJakXltO2U6FzIa2icWYsjZGbb2ebKQnmM Test Doc file 1.0 KB 2026-03-15 15:46"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Tasks",
-        "status": "working",
-        "detail": "ID TITLE MTc3OTM4NDY2NTM2Nzc3MjcwMzE6MDow My Tasks"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Contacts",
-        "status": "working_empty",
-        "detail": "No contacts"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       }
     ]
   },
