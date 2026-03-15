@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scott Mission Control</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #e8ecf3;
+      margin: 0;
+      padding: 32px;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .card {
+      background: #151c33;
+      border: 1px solid #2a3558;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    code {
+      background: #0f1528;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    a {
+      color: #8ab4ff;
+    }
+    .ok {
+      color: #7ee787;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <h1>Scott Mission Control</h1>
-  <p>Mission Control board is live through GitHub Pages.</p>
-  <p>Repository: buzzagent232-alt/mission-control-board</p>
+
+  <div class="card">
+    <div class="ok">Status: Live</div>
+    <p>Mission Control board is live through GitHub Pages.</p>
+    <p>Repository: <a href="https://github.com/buzzagent232-alt/mission-control-board">buzzagent232-alt/mission-control-board</a></p>
+  </div>
+
+  <div class="card">
+    <h2>OpenClaw Notes</h2>
+    <p>This board is currently a static dashboard hosted on GitHub Pages.</p>
+    <p>To display live OpenClaw data, export snapshots from your Mac into this repo.</p>
+  </div>
+
+  <div class="card">
+    <h2>Useful Local Commands</h2>
+    <p><code>openclaw sessions list</code></p>
+    <p><code>openclaw sessions cleanup</code></p>
+    <p><code>openclaw agent --agent main --message "Start a fresh session"</code></p>
+  </div>
 </body>
 </html>
