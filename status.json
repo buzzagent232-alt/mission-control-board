@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-15 11:52:31",
+  "last_updated": "2026-03-15 12:05:18",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -8,10 +8,10 @@
     {
       "session_key": "agent:main:telegram:direct:8637753257",
       "session_id": "48885b18-ff90-4cfc-9a3b-2760e690ce94",
-      "updated_at": 1773593473011,
+      "updated_at": 1773594287549,
       "chat_type": "direct",
       "channel": "telegram",
-      "label": "Scott Walker (@sdwalk2) id:8637753257",
+      "label": "Scott Walker",
       "provider": "telegram",
       "surface": "telegram",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/48885b18-ff90-4cfc-9a3b-2760e690ce94.jsonl"
@@ -96,68 +96,68 @@
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
+      "role": "user",
+      "text": "[Sun 2026-03-15 12:04 CDT] OpenClaw runtime context (internal): This context is runtime-generated, not user-authored. Keep internal details private. [Internal task completion event] source: subagent session_key: agent:c\u2026",
+      "timestamp": "2026-03-15T17:04:47.738Z"
+    },
+    {
+      "session_key": "agent:main:telegram:direct:8637753257",
       "role": "assistant",
-      "text": "The test email has been sent successfully. Here are the details: - message_id: 19cf268a6cbb1409 - thread_id: 19cf268a6cbb1409",
-      "timestamp": "2026-03-15T16:51:13.003Z"
+      "text": "It seems that the task delegation to the chief-of-staff and the security review cannot be completed using the available commands. I will handle this manually by summarizing the tasks: - Design a safe outbound customer m\u2026",
+      "timestamp": "2026-03-15T17:00:40.430Z"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
       "role": "toolResult",
-      "text": "message_id 19cf268a6cbb1409 thread_id 19cf268a6cbb1409",
-      "timestamp": "2026-03-15T16:51:10.931Z"
+      "text": "security: unknown command \"review\" (Command exited with code 1)",
+      "timestamp": "2026-03-15T17:00:37.586Z"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"325\", \"sender_id\": \"8637753257\", \"sender\": \"Scott Walker\", \"timestamp\": \"Sun 2026-03-15 11:51 CDT\" } ``` Sender (untrusted metadata): ```json { \"label\": \"\u2026",
-      "timestamp": "2026-03-15T16:51:08.256Z"
-    },
-    {
-      "session_key": "agent:main:telegram:direct:8637753257",
-      "role": "assistant",
-      "text": "To send the test email, I need some details about the subject and body of the message. Could you please provide these details? If not specified otherwise, I will use standard placeholders for demonstration purposes. Let\u2026",
-      "timestamp": "2026-03-15T16:48:58.913Z"
+      "role": "toolResult",
+      "text": "{ \"status\": \"forbidden\", \"error\": \"agentId is not allowed for sessions_spawn (allowed: none)\" }",
+      "timestamp": "2026-03-15T17:00:37.576Z"
     }
   ],
-  "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
+  "openclaw_version": "Unknown",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
     "services": [
       {
         "name": "gog Installed",
-        "status": "working",
-        "detail": "/opt/homebrew/bin/gog"
+        "status": "blocked",
+        "detail": "gog not found"
       },
       {
         "name": "gog Auth",
-        "status": "working",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z true oauth"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Gmail",
-        "status": "working",
-        "detail": "ID DATE FROM SUBJECT LABELS THREAD 19cf260e3dc1a485 2026-03-15 11:42 buzzagent232@gmail.com Telegram agent Gmail test 6 SENT,INBOX - 19cf24c97802ab91 2026-03-15 11:20 buzzagent232@gmail.com Telegram agent test SENT,INBO\u2026"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Calendar",
-        "status": "working",
-        "detail": "ID NAME ROLE buzzagent232@gmail.com buzzagent232@gmail.com owner"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Drive",
-        "status": "working",
-        "detail": "ID NAME TYPE SIZE MODIFIED 1oDNHMZtuoDgOZN6iRIN2-3b5JJEoDzQL7whPGQSaIEg Test Sheet file 1.0 KB 2026-03-15 15:46 1Pa_CVn4tzvJakXltO2U6FzIa2icWYsjZGbb2ebKQnmM Test Doc file 1.0 KB 2026-03-15 15:46"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Tasks",
-        "status": "working",
-        "detail": "ID TITLE MTc3OTM4NDY2NTM2Nzc3MjcwMzE6MDow My Tasks"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Contacts",
-        "status": "working_empty",
-        "detail": "No contacts"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       }
     ]
   },
