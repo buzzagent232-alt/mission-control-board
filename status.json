@@ -1,79 +1,22 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-15 13:12:27",
+  "last_updated": "2026-03-15 13:35:18",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
-  "agent_registry": [
-    {
-      "id": "main",
-      "default": true,
-      "name": "SOUL",
-      "workspace": "/Users/scottwalker/.openclaw/workspace",
-      "subagents": {
-        "allowAgents": [
-          "chief-of-staff",
-          "security",
-          "engineering",
-          "ops",
-          "qa"
-        ]
-      }
-    },
-    {
-      "id": "chief-of-staff",
-      "name": "chief-of-staff",
-      "workspace": "/Users/scottwalker/.openclaw/workspace-chief-of-staff",
-      "agentDir": "/Users/scottwalker/.openclaw/agents/chief-of-staff/agent",
-      "subagents": {
-        "allowAgents": [
-          "security"
-        ]
-      }
-    },
-    {
-      "id": "security",
-      "name": "security",
-      "workspace": "/Users/scottwalker/.openclaw/workspace-security",
-      "agentDir": "/Users/scottwalker/.openclaw/agents/security/agent"
-    },
-    {
-      "id": "engineering",
-      "name": "engineering",
-      "workspace": "/Users/scottwalker/.openclaw/workspace-engineering",
-      "agentDir": "/Users/scottwalker/.openclaw/agents/engineering/agent"
-    },
-    {
-      "id": "ops",
-      "name": "ops",
-      "workspace": "/Users/scottwalker/.openclaw/workspace-ops",
-      "agentDir": "/Users/scottwalker/.openclaw/agents/ops/agent"
-    },
-    {
-      "id": "qa",
-      "name": "qa",
-      "workspace": "/Users/scottwalker/.openclaw/workspace-qa",
-      "agentDir": "/Users/scottwalker/.openclaw/agents/qa/agent"
-    }
-  ],
-  "main_allowed_specialists": [
-    "chief-of-staff",
-    "security",
-    "engineering",
-    "ops",
-    "qa"
-  ],
+  "agent_registry": [],
+  "main_allowed_specialists": [],
   "sessions": [
     {
       "session_key": "agent:main:main",
-      "session_id": "8987fb03-f742-4c21-b2c9-2f4f0158b6b5",
-      "updated_at": 1773596716668,
+      "session_id": "1c063130-8ea0-4264-beba-81522658617e",
+      "updated_at": 1773598444313,
       "chat_type": "direct",
       "channel": "webchat",
       "label": "",
       "provider": "webchat",
       "surface": "webchat",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/8987fb03-f742-4c21-b2c9-2f4f0158b6b5.jsonl"
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/1c063130-8ea0-4264-beba-81522658617e.jsonl"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
@@ -107,28 +50,6 @@
       "provider": "",
       "surface": "",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/5ad82251-9bbf-4f7b-8b5e-62bed03f017e.jsonl"
-    },
-    {
-      "session_key": "agent:main:subagent:5c23035c-24ad-4b2c-bd69-b5b98c6a3266",
-      "session_id": "f8fac84a-0208-4cf1-9483-364045bb4314",
-      "updated_at": 1773595149202,
-      "chat_type": "",
-      "channel": "telegram",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/f8fac84a-0208-4cf1-9483-364045bb4314.jsonl"
-    },
-    {
-      "session_key": "agent:main:subagent:48c84135-6b89-4326-bd74-5a1ff5a6a137",
-      "session_id": "0e19c5a2-6872-4b88-8630-4dbc31371c11",
-      "updated_at": 1773594911864,
-      "chat_type": "",
-      "channel": "telegram",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/0e19c5a2-6872-4b88-8630-4dbc31371c11.jsonl"
     },
     {
       "session_key": "agent:main:telegram:slash:8637753257",
@@ -174,6 +95,12 @@
   ],
   "recent_activity": [
     {
+      "session_key": "agent:main:main",
+      "role": "user",
+      "text": "A new session was started via /new or /reset. Run your Session Startup sequence - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - \u2026",
+      "timestamp": "2026-03-15T18:13:32.180Z"
+    },
+    {
       "session_key": "agent:main:telegram:direct:8637753257",
       "role": "user",
       "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"365\", \"sender_id\": \"8637753257\", \"sender\": \"Scott Walker\", \"timestamp\": \"Sun 2026-03-15 12:28 CDT\" } ``` Sender (untrusted metadata): ```json { \"label\": \"\u2026",
@@ -198,42 +125,6 @@
       "timestamp": "2026-03-15T17:27:21.978Z"
     },
     {
-      "session_key": "agent:main:subagent:48c84135-6b89-4326-bd74-5a1ff5a6a137",
-      "role": "assistant",
-      "text": "To design a safe and effective outbound customer messaging workflow, we need to consider several key aspects: security, compliance, privacy, data protection, message content, delivery method, and monitoring/reporting me\u2026",
-      "timestamp": "2026-03-15T17:15:11.821Z"
-    },
-    {
-      "session_key": "agent:main:subagent:48c84135-6b89-4326-bd74-5a1ff5a6a137",
-      "role": "user",
-      "text": "[Sun 2026-03-15 12:14 CDT] [Subagent Context] You are running as a subagent (depth 1/2). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: Design a safe outbound customer messaging w\u2026",
-      "timestamp": "2026-03-15T17:14:27.950Z"
-    },
-    {
-      "session_key": "agent:main:subagent:5c23035c-24ad-4b2c-bd69-b5b98c6a3266",
-      "role": "assistant",
-      "text": "security_reviewed: no reason: The 'healthcheck' tool is not installed or recognized by the system. Please ensure it's available in your PATH and try again.",
-      "timestamp": "2026-03-15T17:19:09.158Z"
-    },
-    {
-      "session_key": "agent:main:subagent:5c23035c-24ad-4b2c-bd69-b5b98c6a3266",
-      "role": "toolResult",
-      "text": "{ \"status\": \"error\", \"tool\": \"exec\", \"error\": \"zsh:1: command not found: healthcheck\\n\\nCommand not found\" }",
-      "timestamp": "2026-03-15T17:17:38.042Z"
-    },
-    {
-      "session_key": "agent:main:subagent:5c23035c-24ad-4b2c-bd69-b5b98c6a3266",
-      "role": "toolResult",
-      "text": "{ \"status\": \"error\", \"tool\": \"exec\", \"error\": \"elevated is not available right now (runtime=direct).\\nFailing gates: enabled (tools.elevated.enabled / agents.list[].tools.elevated.enabled)\\nContext: provider=telegram se\u2026",
-      "timestamp": "2026-03-15T17:16:29.042Z"
-    },
-    {
-      "session_key": "agent:main:subagent:5c23035c-24ad-4b2c-bd69-b5b98c6a3266",
-      "role": "user",
-      "text": "[Sun 2026-03-15 12:14 CDT] [Subagent Context] You are running as a subagent (depth 1/2). Results auto-announce to your requester; do not busy-poll for status. [Subagent Task]: You must perform a security audit and revie\u2026",
-      "timestamp": "2026-03-15T17:14:32.837Z"
-    },
-    {
       "session_key": "agent:main:subagent:7562c7e2-982e-49f8-a8ac-ad1542af8785",
       "role": "assistant",
       "text": "To design a safe and effective outbound customer messaging workflow, we'll focus on security, compliance, user consent, and data privacy. Here's the recommended approach: ### Executive Summary Design a secure, compliant\u2026",
@@ -246,45 +137,45 @@
       "timestamp": "2026-03-15T17:27:22.157Z"
     }
   ],
-  "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
+  "openclaw_version": "Unknown",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
     "services": [
       {
         "name": "gog Installed",
-        "status": "working",
-        "detail": "/opt/homebrew/bin/gog"
+        "status": "blocked",
+        "detail": "gog not found"
       },
       {
         "name": "gog Auth",
-        "status": "working",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z true oauth"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Gmail",
-        "status": "working",
-        "detail": "ID DATE FROM SUBJECT LABELS THREAD 19cf260e3dc1a485 2026-03-15 11:42 buzzagent232@gmail.com Telegram agent Gmail test 6 SENT,INBOX - 19cf24c97802ab91 2026-03-15 11:20 buzzagent232@gmail.com Telegram agent test SENT,INBO\u2026"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Calendar",
-        "status": "working",
-        "detail": "ID NAME ROLE buzzagent232@gmail.com buzzagent232@gmail.com owner"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Drive",
-        "status": "working",
-        "detail": "ID NAME TYPE SIZE MODIFIED 1oDNHMZtuoDgOZN6iRIN2-3b5JJEoDzQL7whPGQSaIEg Test Sheet file 1.0 KB 2026-03-15 15:46 1Pa_CVn4tzvJakXltO2U6FzIa2icWYsjZGbb2ebKQnmM Test Doc file 1.0 KB 2026-03-15 15:46"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Tasks",
-        "status": "working",
-        "detail": "ID TITLE MTc3OTM4NDY2NTM2Nzc3MjcwMzE6MDow My Tasks"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       },
       {
         "name": "Contacts",
-        "status": "working_empty",
-        "detail": "No contacts"
+        "status": "blocked",
+        "detail": "[Errno 2] No such file or directory: 'gog'"
       }
     ]
   },
