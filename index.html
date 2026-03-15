@@ -96,7 +96,7 @@
       min-width: 0;
       flex: 1;
     }
-    .copy-btn {
+    .btn {
       background: #223158;
       color: #e8ecf3;
       border: 1px solid #3a4c7b;
@@ -105,13 +105,21 @@
       cursor: pointer;
       font-size: 12px;
       white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
     }
-    .copy-btn:hover {
+    .btn:hover {
       background: #2b3d6d;
     }
-    .copy-btn.copied {
+    .btn.copied {
       background: #1f5134;
       border-color: #2d7a4c;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
     }
     .small {
       font-size: 12px;
@@ -202,6 +210,10 @@
       <p id="boardStatus" class="ok">Loading...</p>
       <p><strong>Last Updated:</strong> <span id="lastUpdated">Loading...</span></p>
       <p><strong>Repository:</strong> <a href="https://github.com/buzzagent232-alt/mission-control-board">buzzagent232-alt/mission-control-board</a></p>
+      <div class="btn-row">
+        <a class="btn" href="https://github.com/buzzagent232-alt/mission-control-board" target="_blank" rel="noreferrer">Open Repo</a>
+        <a class="btn" href="https://github.com/buzzagent232-alt/mission-control-board/actions" target="_blank" rel="noreferrer">Open Actions</a>
+      </div>
     </div>
 
     <div class="card">
@@ -210,6 +222,10 @@
       <p><strong>Session Store:</strong> <span id="sessionStore" class="mono">Loading...</span></p>
       <p><strong>Session Count:</strong> <span id="sessionCount">Loading...</span></p>
       <p><strong>Tasks Source:</strong> <span id="tasksSource" class="mono">Loading...</span></p>
+      <div class="btn-row">
+        <button class="btn" id="copySessionStoreBtn">Copy Session Store Path</button>
+        <button class="btn" id="copyTasksSourceBtn">Copy Tasks Source Path</button>
+      </div>
     </div>
 
     <div class="card">
@@ -245,6 +261,10 @@
       <div><code>openclaw sessions cleanup</code></div>
       <div><code>openclaw agent --agent main --message "Start a fresh session"</code></div>
       <div><code>cd ~/mission-control-board && ./scripts/update_status.sh</code></div>
+      <div class="btn-row">
+        <button class="btn copy-cmd" data-copy='openclaw sessions'>Copy sessions command</button>
+        <button class="btn copy-cmd" data-copy='cd ~/mission-control-board && ./scripts/update_status.sh'>Copy refresh command</button>
+      </div>
     </div>
 
     <div class="card">
@@ -314,13 +334,15 @@
     async function copyText(text, button) {
       try {
         await navigator.clipboard.writeText(text);
-        const old = button.textContent;
-        button.textContent = 'Copied';
-        button.classList.add('copied');
-        setTimeout(() => {
-          button.textContent = old;
-          button.classList.remove('copied');
-        }, 1200);
+        if (button) {
+          const old = button.textContent;
+          button.textContent = 'Copied';
+          button.classList.add('copied');
+          setTimeout(() => {
+            button.textContent = old;
+            button.classList.remove('copied');
+          }, 1200);
+        }
       } catch {
         alert('Could not copy to clipboard.');
       }
@@ -427,6 +449,15 @@
         document.getElementById('sessionCount').textContent = Array.isArray(data.sessions) ? data.sessions.length : 0;
         document.getElementById('tasksSource').textContent = data.tasks_source || 'No tasks.json found';
 
+        document.getElementById('copySessionStoreBtn').onclick = (e) =>
+          copyText(data.session_store || '', e.currentTarget);
+        document.getElementById('copyTasksSourceBtn').onclick = (e) =>
+          copyText(data.tasks_source || '', e.currentTarget);
+
+        document.querySelectorAll('.copy-cmd').forEach(btn => {
+          btn.onclick = (e) => copyText(btn.dataset.copy || '', e.currentTarget);
+        });
+
         const sessionList = document.getElementById('sessionList');
         sessionList.innerHTML = '';
 
@@ -450,20 +481,32 @@
                   <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
                   ${tagHtml}
                 </div>
-                <button class="copy-btn" data-session-id="${session.session_id || ''}">Copy Session ID</button>
+                <button class="btn copy-session-id" data-session-id="${session.session_id || ''}">Copy Session ID</button>
               </div>
 
               <div class="row"><strong>Session ID:</strong><br><span class="mono">${session.session_id || 'Unknown'}</span></div>
               <div class="row"><strong>Updated:</strong> ${formatTimestamp(session.updated_at)} <span class="muted small">(${timeAgo(session.updated_at)})</span></div>
               <div class="row"><strong>Chat Type:</strong> ${session.chat_type || 'Unknown'}</div>
               ${fileRow}
+              <div class="btn-row">
+                <button class="btn copy-session-path" data-session-path="${session.session_file || ''}">Copy Session File Path</button>
+                <button class="btn copy-session-tail" data-session-path="${session.session_file || ''}">Copy Tail Command</button>
+              </div>
             `;
 
             sessionList.appendChild(div);
           });
 
-          sessionList.querySelectorAll('.copy-btn').forEach(btn => {
+          sessionList.querySelectorAll('.copy-session-id').forEach(btn => {
             btn.addEventListener('click', () => copyText(btn.dataset.sessionId, btn));
+          });
+          sessionList.querySelectorAll('.copy-session-path').forEach(btn => {
+            btn.addEventListener('click', () => copyText(btn.dataset.sessionPath, btn));
+          });
+          sessionList.querySelectorAll('.copy-session-tail').forEach(btn => {
+            const p = btn.dataset.sessionPath || '';
+            const cmd = p ? `tail -n 40 "${p}"` : '';
+            btn.addEventListener('click', () => copyText(cmd, btn));
           });
         } else {
           sessionList.innerHTML = `<div class="empty">No sessions found.</div>`;
