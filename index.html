@@ -678,5 +678,42 @@
 
     loadStatus();
   </script>
+
+<script>
+(async function () {
+  try {
+    const res = await fetch('status.json?ts=' + Date.now(), { cache: 'no-store' });
+    const data = await res.json();
+
+    const agentRegistryEl = document.getElementById('agentRegistry');
+    const mainAllowedEl = document.getElementById('mainAllowedSpecialists');
+
+    if (agentRegistryEl) {
+      agentRegistryEl.textContent = (data.agent_registry || []).map(a => {
+        const bits = [a.id || '(unknown)'];
+        if (a.workspace) bits.push(`workspace=${a.workspace}`);
+        if (a.agentDir) bits.push(`agentDir=${a.agentDir}`);
+        return bits.join(' | ');
+      }).join('\n') || 'None';
+    }
+
+    if (mainAllowedEl) {
+      mainAllowedEl.textContent =
+        (data.main_allowed_specialists || []).join(', ') || 'None';
+    }
+  } catch (err) {
+    const agentRegistryEl = document.getElementById('agentRegistry');
+    const mainAllowedEl = document.getElementById('mainAllowedSpecialists');
+    if (agentRegistryEl && agentRegistryEl.textContent.trim() === 'Loading...') {
+      agentRegistryEl.textContent = 'Error loading agent registry';
+    }
+    if (mainAllowedEl && mainAllowedEl.textContent.trim() === 'Loading...') {
+      mainAllowedEl.textContent = 'Error loading allowlist';
+    }
+    console.error('Mission Control agent registry render failed:', err);
+  }
+})();
+</script>
+
 </body>
 </html>
