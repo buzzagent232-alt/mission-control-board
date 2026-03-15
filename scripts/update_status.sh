@@ -3,10 +3,31 @@ set -e
 
 REPO_DIR="$HOME/mission-control-board"
 SESSION_STORE="$HOME/.openclaw/agents/main/sessions/sessions.json"
+OPENCLAW_CONFIG_JSON="$(openclaw config get 'agents.list' 2>/dev/null || echo '[]')"
+export OPENCLAW_CONFIG_JSON
 
 cd "$REPO_DIR"
 
 python3 <<PY > status.json
+import os
+
+def get_agents_from_config():
+    raw = os.environ.get("OPENCLAW_CONFIG_JSON", "[]")
+    try:
+        agents = json.loads(raw)
+        if isinstance(agents, list):
+            return agents
+    except Exception:
+        pass
+    return []
+
+AGENT_REGISTRY = get_agents_from_config()
+MAIN_ALLOW_AGENTS = []
+for a in AGENT_REGISTRY:
+    if a.get("id") == "main":
+        MAIN_ALLOW_AGENTS = ((a.get("subagents") or {}).get("allowAgents")) or []
+        break
+
 import json
 import subprocess
 from pathlib import Path
@@ -389,6 +410,8 @@ payload = {
     "agent_name": "main",
     "session_store": str(session_store),
     "tasks_source": tasks_source,
+    "agent_registry": AGENT_REGISTRY,
+    "main_allowed_specialists": MAIN_ALLOW_AGENTS,
     "sessions": sessions,
     "tasks": tasks,
     "recent_activity": recent_activity,
