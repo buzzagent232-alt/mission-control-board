@@ -9,11 +9,20 @@ export OPENCLAW_CONFIG_JSON
 cd "$REPO_DIR"
 
 python3 <<PY > status.json
-import os
+import subprocess
 
 def get_agents_from_config():
-    raw = os.environ.get("OPENCLAW_CONFIG_JSON", "[]")
     try:
+        res = subprocess.run(
+            ["openclaw", "config", "get", "agents.list"],
+            capture_output=True,
+            text=True,
+            check=False
+        )
+        raw = (res.stdout or "").strip()
+        start = raw.find("[")
+        if start != -1:
+            raw = raw[start:]
         agents = json.loads(raw)
         if isinstance(agents, list):
             return agents
