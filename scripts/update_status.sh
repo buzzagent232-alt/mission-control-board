@@ -46,13 +46,8 @@ def extract_tasks(obj):
     tasks = []
     for i, item in enumerate(raw):
         if isinstance(item, str):
-            tasks.append({
-                "title": item,
-                "status": "backlog",
-                "notes": ""
-            })
+            tasks.append({"title": item, "status": "backlog", "notes": ""})
             continue
-
         if not isinstance(item, dict):
             continue
 
@@ -63,7 +58,6 @@ def extract_tasks(obj):
             or item.get("summary")
             or f"Task {i+1}"
         )
-
         status = normalize_status(
             item.get("status")
             or item.get("state")
@@ -71,14 +65,12 @@ def extract_tasks(obj):
             or item.get("lane")
             or "backlog"
         )
-
         notes = (
             item.get("notes")
             or item.get("description")
             or item.get("detail")
             or ""
         )
-
         owner = item.get("owner") or item.get("assignee") or ""
         priority = item.get("priority") or ""
 
@@ -91,11 +83,120 @@ def extract_tasks(obj):
         })
     return tasks
 
-def clip(text, n=180):
+def clip(text, n=220):
     text = " ".join(str(text).split())
     return text if len(text) <= n else text[: n - 1] + "…"
 
-def extract_activity_from_jsonl(path, session_key, limit=2):
+def flatten_text(value):
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, (int, float, bool)):
+        return str(value)
+    if isinstance(value, list):
+        out = []
+        for item in value:
+            t = flatten_text(item)
+            if t:
+                out.append(t)
+        return " ".join(out)
+    if isinstance(value, dict):
+        preferred = [
+            "text", "content", "value", "delta", "summary",
+            "message", "title", "event", "body"
+        ]
+        out = []
+        for key in preferred:
+            if key in value:
+                t = flatten_text(value.get(key))
+                if t:
+                    out.append(t)
+        return " ".join(out)
+    return ""
+
+def extract_role(obj):
+    candidates = [
+        obj.get("role"),
+        (obj.get("message") or {}).get("role") if isinstance(obj.get("message"), dict) else None,
+        (obj.get("author") or {}).get("role") if isinstance(obj.get("author"), dict) else None,
+        obj.get("type"),
+        obj.get("eventType"),
+        obj.get("kind"),
+    ]
+    for c in candidates:
+        if c:
+            return str(c)
+    return "event"
+
+def extract_timestamp(obj):
+    for key in ["timestamp", "createdAt", "updatedAt", "time", "ts"]:
+        if obj.get(key) is not None:
+            return obj.get(key)
+    meta = obj.get("metadata")
+    if isinstance(meta, dict):
+        for key in ["timestamp", "createdAt", "updatedAt", "time", "ts"]:
+            if meta.get(key) is not None:
+                return meta.get(key)
+    return None
+
+def extract_text(obj):
+    candidates = [
+        obj.get("content"),
+        obj.get("text"),
+        obj.get("delta"),
+        obj.get("summary"),
+        obj.get("event"),
+        obj.get("body"),
+        obj.get("parts"),
+        obj.get("messages"),
+        obj.get("payload"),
+        obj.get("data"),
+        obj.get("output"),
+        obj.get("input"),
+        obj.get("result"),
+    ]
+
+    msg = obj.get("message")
+    if isinstance(msg, dict):
+        candidates.extend([
+            msg.get("content"),
+            msg.get("text"),
+            msg.get("parts"),
+        ])
+
+    author = obj.get("author")
+    if isinstance(author, dict):
+        candidates.append(author.get("content"))
+
+    for c in candidates:
+        t = flatten_text(c)
+        if t and t.strip():
+            return clip(t)
+    return ""
+
+def is_noise(role, text):
+    t = (text or "").strip()
+    tl = t.lower()
+    rl = (role or "").strip().lower()
+
+    if not t:
+        return True
+    if t == "NO_REPLY":
+        return True
+    if tl.startswith("system: [") and "post-compaction context refresh" in tl:
+        return True
+    if "session was just compacted" in tl:
+        return True
+    if "conversation summary above is a hint" in tl:
+        return True
+    if rl == "system" and ("compaction" in tl or "context refresh" in tl):
+        return True
+    if rl in {"event", "system"} and len(t) < 8:
+        return True
+    return False
+
+def extract_activity_from_jsonl(path, session_key, limit=4):
     items = []
     if not path:
         return items
@@ -117,44 +218,22 @@ def extract_activity_from_jsonl(path, session_key, limit=2):
             obj = json.loads(raw)
         except Exception:
             continue
+        if not isinstance(obj, dict):
+            continue
 
-        role = (
-            obj.get("role")
-            or obj.get("message", {}).get("role")
-            or obj.get("author", {}).get("role")
-            or obj.get("type")
-            or "event"
-        )
+        role = extract_role(obj)
+        text = extract_text(obj)
+        ts = extract_timestamp(obj)
 
-        text = (
-            obj.get("content")
-            or obj.get("text")
-            or obj.get("message", {}).get("content")
-            or obj.get("delta")
-            or obj.get("summary")
-            or obj.get("event")
-            or obj.get("type")
-            or ""
-        )
+        if is_noise(role, text):
+            continue
 
-        if isinstance(text, list):
-            text = " ".join(str(x) for x in text)
-
-        ts = (
-            obj.get("timestamp")
-            or obj.get("createdAt")
-            or obj.get("updatedAt")
-            or obj.get("time")
-            or None
-        )
-
-        if text:
-            items.append({
-                "session_key": session_key,
-                "role": str(role),
-                "text": clip(text),
-                "timestamp": ts
-            })
+        items.append({
+            "session_key": session_key,
+            "role": str(role),
+            "text": text,
+            "timestamp": ts
+        })
 
         if len(items) >= limit:
             break
@@ -187,11 +266,20 @@ if session_store.exists():
                     extract_activity_from_jsonl(
                         session.get("session_file"),
                         session_key,
-                        limit=2
+                        limit=4
                     )
                 )
 
 sessions.sort(key=lambda x: x.get("updated_at") or 0, reverse=True)
+
+def sort_key(x):
+    ts = x.get("timestamp")
+    try:
+        return float(ts)
+    except Exception:
+        return -1
+
+recent_activity.sort(key=sort_key, reverse=True)
 recent_activity = recent_activity[:12]
 
 tasks_source = ""
