@@ -12,50 +12,125 @@
       margin: 0;
       padding: 32px;
     }
-    h1 {
+    h1, h2 {
       margin-top: 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
     }
     .card {
       background: #151c33;
       border: 1px solid #2a3558;
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 20px;
-    }
-    code {
-      background: #0f1528;
-      padding: 2px 6px;
-      border-radius: 6px;
-    }
-    a {
-      color: #8ab4ff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
     .ok {
       color: #7ee787;
       font-weight: bold;
     }
+    .muted {
+      color: #9fb0d1;
+    }
+    code {
+      background: #0f1528;
+      padding: 2px 6px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 4px 0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    a {
+      color: #8ab4ff;
+    }
+    .mono {
+      font-family: Menlo, Monaco, Consolas, monospace;
+      word-break: break-word;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #1c2647;
+      border: 1px solid #31406b;
+      margin: 4px 6px 0 0;
+    }
   </style>
 </head>
 <body>
   <h1>Scott Mission Control</h1>
+  <p class="muted">GitHub Pages dashboard for OpenClaw status snapshots</p>
 
-  <div class="card">
-    <div class="ok">Status: Live</div>
-    <p>Mission Control board is live through GitHub Pages.</p>
-    <p>Repository: <a href="https://github.com/buzzagent232-alt/mission-control-board">buzzagent232-alt/mission-control-board</a></p>
+  <div class="grid">
+    <div class="card">
+      <h2>Board Status</h2>
+      <p id="boardStatus" class="ok">Loading...</p>
+      <p><strong>Last Updated:</strong> <span id="lastUpdated">Loading...</span></p>
+      <p><strong>Repository:</strong> <a href="https://github.com/buzzagent232-alt/mission-control-board">buzzagent232-alt/mission-control-board</a></p>
+    </div>
+
+    <div class="card">
+      <h2>OpenClaw Summary</h2>
+      <p><strong>Agent:</strong> <span id="agentName">Loading...</span></p>
+      <p><strong>Session Store:</strong> <span id="sessionStore" class="mono">Loading...</span></p>
+      <p><strong>Session Count:</strong> <span id="sessionCount">Loading...</span></p>
+    </div>
+
+    <div class="card">
+      <h2>Sessions</h2>
+      <div id="sessionList">Loading...</div>
+    </div>
+
+    <div class="card">
+      <h2>Useful Local Commands</h2>
+      <div><code>openclaw sessions list</code></div>
+      <div><code>openclaw sessions cleanup</code></div>
+      <div><code>openclaw agent --agent main --message "Start a fresh session"</code></div>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>OpenClaw Notes</h2>
-    <p>This board is currently a static dashboard hosted on GitHub Pages.</p>
-    <p>To display live OpenClaw data, export snapshots from your Mac into this repo.</p>
-  </div>
+  <script>
+    async function loadStatus() {
+      try {
+        const response = await fetch('status.json?' + Date.now());
+        if (!response.ok) throw new Error('status.json not found');
 
-  <div class="card">
-    <h2>Useful Local Commands</h2>
-    <p><code>openclaw sessions list</code></p>
-    <p><code>openclaw sessions cleanup</code></p>
-    <p><code>openclaw agent --agent main --message "Start a fresh session"</code></p>
-  </div>
+        const data = await response.json();
+
+        document.getElementById('boardStatus').textContent = data.board_status || 'Live';
+        document.getElementById('lastUpdated').textContent = data.last_updated || 'Unknown';
+        document.getElementById('agentName').textContent = data.agent_name || 'Unknown';
+        document.getElementById('sessionStore').textContent = data.session_store || 'Unknown';
+        document.getElementById('sessionCount').textContent = Array.isArray(data.sessions) ? data.sessions.length : 0;
+
+        const sessionList = document.getElementById('sessionList');
+        sessionList.innerHTML = '';
+
+        if (Array.isArray(data.sessions) && data.sessions.length > 0) {
+          data.sessions.forEach(session => {
+            const div = document.createElement('div');
+            div.className = 'pill mono';
+            div.textContent = session;
+            sessionList.appendChild(div);
+          });
+        } else {
+          sessionList.textContent = 'No sessions found.';
+        }
+      } catch (err) {
+        document.getElementById('boardStatus').textContent = 'Live (no status.json loaded)';
+        document.getElementById('lastUpdated').textContent = 'Not available';
+        document.getElementById('agentName').textContent = 'Not available';
+        document.getElementById('sessionStore').textContent = 'Not available';
+        document.getElementById('sessionCount').textContent = '0';
+        document.getElementById('sessionList').textContent = 'No status snapshot available yet.';
+      }
+    }
+
+    loadStatus();
+  </script>
 </body>
 </html>
