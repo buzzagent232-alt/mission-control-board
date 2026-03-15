@@ -8,6 +8,7 @@ cd "$REPO_DIR"
 
 python3 <<PY > status.json
 import json
+import subprocess
 from pathlib import Path
 from datetime import datetime
 
@@ -18,6 +19,24 @@ task_candidates = [
     Path.home() / ".openclaw" / "tasks.json",
     Path.home() / ".clawdbot" / "tasks.json",
 ]
+
+def run_cmd(cmd):
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=25,
+            shell=False
+        )
+        return {
+            "ok": result.returncode == 0,
+            "stdout": (result.stdout or "").strip(),
+            "stderr": (result.stderr or "").strip(),
+            "code": result.returncode
+        }
+    except Exception as e:
+        return {"ok": False, "stdout": "", "stderr": str(e), "code": -1}
 
 def normalize_status(value: str) -> str:
     v = (value or "").strip().lower()
@@ -293,18 +312,64 @@ for candidate in task_candidates:
             tasks = []
         break
 
+openclaw_version_res = run_cmd(["openclaw", "--version"])
+openclaw_version = openclaw_version_res["stdout"] or "Unknown"
+
+gog_auth_res = run_cmd(["gog", "auth", "list", "--check"])
+gog_installed = run_cmd(["which", "gog"])
+
+gmail_res = run_cmd(["gog", "gmail", "search", "in:inbox newer_than:30d"])
+calendar_res = run_cmd(["gog", "calendar", "calendars"])
+drive_res = run_cmd(["gog", "drive", "ls"])
+tasks_res = run_cmd(["gog", "tasks", "lists", "list"])
+contacts_res = run_cmd(["gog", "contacts", "list"])
+
+def status_from_result(res, empty_ok=False):
+    if res["ok"]:
+        if not res["stdout"] or res["stdout"].strip().startswith("No "):
+            return "working_empty" if empty_ok else "working"
+        return "working"
+    return "blocked"
+
 google_audit = {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
     "services": [
-        {"name": "Gmail", "status": "working", "detail": "Search returned inbox results"},
-        {"name": "Calendar", "status": "working", "detail": "Calendars listed; events query succeeded"},
-        {"name": "Drive", "status": "working", "detail": "Drive listing returned files"},
-        {"name": "Docs", "status": "working", "detail": "Test document creation succeeded"},
-        {"name": "Sheets", "status": "working", "detail": "Test spreadsheet creation succeeded"},
-        {"name": "Tasks", "status": "working", "detail": "Task lists returned 'My Tasks'"},
-        {"name": "Contacts", "status": "working_empty", "detail": "API working; no contacts returned"},
-        {"name": "Telegram Gmail Send", "status": "working", "detail": "Confirmed end-to-end: Telegram -> OpenClaw -> gog gmail send -> inbox delivery"}
+        {
+            "name": "gog Installed",
+            "status": "working" if gog_installed["ok"] else "blocked",
+            "detail": gog_installed["stdout"] or gog_installed["stderr"] or "gog not found"
+        },
+        {
+            "name": "gog Auth",
+            "status": "working" if gog_auth_res["ok"] and "true" in gog_auth_res["stdout"].lower() else "blocked",
+            "detail": clip(gog_auth_res["stdout"] or gog_auth_res["stderr"] or "No auth result")
+        },
+        {
+            "name": "Gmail",
+            "status": status_from_result(gmail_res),
+            "detail": clip(gmail_res["stdout"] or gmail_res["stderr"] or "No result")
+        },
+        {
+            "name": "Calendar",
+            "status": status_from_result(calendar_res, empty_ok=True),
+            "detail": clip(calendar_res["stdout"] or calendar_res["stderr"] or "No result")
+        },
+        {
+            "name": "Drive",
+            "status": status_from_result(drive_res, empty_ok=True),
+            "detail": clip(drive_res["stdout"] or drive_res["stderr"] or "No result")
+        },
+        {
+            "name": "Tasks",
+            "status": status_from_result(tasks_res, empty_ok=True),
+            "detail": clip(tasks_res["stdout"] or tasks_res["stderr"] or "No result")
+        },
+        {
+            "name": "Contacts",
+            "status": status_from_result(contacts_res, empty_ok=True),
+            "detail": clip(contacts_res["stdout"] or contacts_res["stderr"] or "No result")
+        }
     ]
 }
 
@@ -313,8 +378,7 @@ capabilities = [
     {"name": "Auto Refresh", "status": "working", "detail": "launchd refresh job is configured on this Mac"},
     {"name": "Telegram Sessions", "status": "working", "detail": "Telegram direct session is active and visible on the board"},
     {"name": "Telegram Gmail Send", "status": "working", "detail": "Confirmed end-to-end: Telegram -> OpenClaw -> gog gmail send -> inbox delivery"},
-    {"name": "Google Workspace Access", "status": "working", "detail": "Gmail, Calendar, Drive, Docs, Sheets, Tasks operational"},
-    {"name": "Contacts Access", "status": "working_empty", "detail": "People API working; no contacts returned"},
+    {"name": "Google Workspace Access", "status": "working", "detail": "Dynamic audit runs on each refresh"},
     {"name": "Recent Activity Feed", "status": "working", "detail": "Recent session activity is being extracted from jsonl logs"},
     {"name": "Tasks Kanban", "status": "working", "detail": "Tasks snapshot is loading from local tasks.json"}
 ]
@@ -328,7 +392,7 @@ payload = {
     "sessions": sessions,
     "tasks": tasks,
     "recent_activity": recent_activity,
-    "openclaw_version": "2026.3.13",
+    "openclaw_version": openclaw_version,
     "google_audit": google_audit,
     "capabilities": capabilities
 }
