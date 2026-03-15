@@ -158,6 +158,38 @@
       white-space: normal;
       line-height: 1.45;
     }
+
+    .role-user {
+      background: #1d3a2a;
+      border-color: #2c6b48;
+      color: #b7f7ca;
+    }
+    .role-assistant {
+      background: #1f2f57;
+      border-color: #335699;
+      color: #c9dbff;
+    }
+    .role-system {
+      background: #4a3a14;
+      border-color: #8a6a18;
+      color: #ffe7a3;
+    }
+
+    .priority-high {
+      background: #4a1f26;
+      border-color: #8f3340;
+      color: #ffc8ce;
+    }
+    .priority-medium {
+      background: #4a3a14;
+      border-color: #8a6a18;
+      color: #ffe7a3;
+    }
+    .priority-low {
+      background: #18364a;
+      border-color: #2d678f;
+      color: #bfe7ff;
+    }
   </style>
 </head>
 <body>
@@ -315,16 +347,37 @@
       });
     }
 
+    function priorityClass(priority) {
+      const p = String(priority || '').trim().toLowerCase();
+      if (p === 'high') return 'priority-high';
+      if (p === 'medium') return 'priority-medium';
+      if (p === 'low') return 'priority-low';
+      return '';
+    }
+
+    function roleClass(role) {
+      const r = String(role || '').trim().toLowerCase();
+      if (r === 'user') return 'role-user';
+      if (r === 'assistant') return 'role-assistant';
+      if (r === 'system') return 'role-system';
+      return '';
+    }
+
     function renderTask(task) {
       const div = document.createElement('div');
       div.className = 'task';
+
       const meta = [];
-      if (task.priority) meta.push(task.priority);
-      if (task.owner) meta.push(task.owner);
-      const metaHtml = meta.length
-        ? `<div class="labels">${meta.map(x => `<span class="label">${x}</span>`).join('')}</div>`
-        : '';
+      if (task.priority) {
+        meta.push(`<span class="label ${priorityClass(task.priority)}">${task.priority}</span>`);
+      }
+      if (task.owner) {
+        meta.push(`<span class="label">${task.owner}</span>`);
+      }
+
+      const metaHtml = meta.length ? `<div class="labels">${meta.join('')}</div>` : '';
       const notes = task.notes ? `<p class="muted">${task.notes}</p>` : '';
+
       div.innerHTML = `
         <h3>${task.title || 'Untitled task'}</h3>
         ${metaHtml}
@@ -344,13 +397,16 @@
       const div = document.createElement('div');
       div.className = 'activity';
 
-      const tags = [
-        item.role || 'event',
-        item.session_key || ''
-      ].filter(Boolean);
+      const tags = [];
+      if (item.role) {
+        tags.push(`<span class="label ${roleClass(item.role)}">${item.role}</span>`);
+      }
+      if (item.session_key) {
+        tags.push(`<span class="label">${item.session_key}</span>`);
+      }
 
       div.innerHTML = `
-        <div class="labels">${tags.map(x => `<span class="label">${x}</span>`).join('')}</div>
+        <div class="labels">${tags.join('')}</div>
         <div class="muted small">${item.timestamp ? `${formatTimestamp(item.timestamp)} (${timeAgo(item.timestamp)})` : 'No timestamp'}</div>
         <div class="activity-text">${item.text || 'No text'}</div>
       `;
