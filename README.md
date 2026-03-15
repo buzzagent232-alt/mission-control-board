@@ -1,3 +1,3 @@
 # Scott Mission Control
-Sun Mar 15 07:19:46 CDT 2026
-pages-check
+
+Minimal test repo to verify GitHub Pages is alive.
