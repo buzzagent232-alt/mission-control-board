@@ -303,9 +303,21 @@ google_audit = {
         {"name": "Docs", "status": "working", "detail": "Test document creation succeeded"},
         {"name": "Sheets", "status": "working", "detail": "Test spreadsheet creation succeeded"},
         {"name": "Tasks", "status": "working", "detail": "Task lists returned 'My Tasks'"},
-        {"name": "Contacts", "status": "working_empty", "detail": "API working; no contacts returned"}
+        {"name": "Contacts", "status": "working_empty", "detail": "API working; no contacts returned"},
+        {"name": "Telegram Gmail Send", "status": "working", "detail": "Confirmed end-to-end: Telegram -> OpenClaw -> gog gmail send -> inbox delivery"}
     ]
 }
+
+capabilities = [
+    {"name": "Mission Control Board", "status": "working", "detail": "GitHub Pages board is live and updating"},
+    {"name": "Auto Refresh", "status": "working", "detail": "launchd refresh job is configured on this Mac"},
+    {"name": "Telegram Sessions", "status": "working", "detail": "Telegram direct session is active and visible on the board"},
+    {"name": "Telegram Gmail Send", "status": "working", "detail": "Confirmed end-to-end: Telegram -> OpenClaw -> gog gmail send -> inbox delivery"},
+    {"name": "Google Workspace Access", "status": "working", "detail": "Gmail, Calendar, Drive, Docs, Sheets, Tasks operational"},
+    {"name": "Contacts Access", "status": "working_empty", "detail": "People API working; no contacts returned"},
+    {"name": "Recent Activity Feed", "status": "working", "detail": "Recent session activity is being extracted from jsonl logs"},
+    {"name": "Tasks Kanban", "status": "working", "detail": "Tasks snapshot is loading from local tasks.json"}
+]
 
 payload = {
     "board_status": "Live",
@@ -317,7 +329,8 @@ payload = {
     "tasks": tasks,
     "recent_activity": recent_activity,
     "openclaw_version": "2026.3.13",
-    "google_audit": google_audit
+    "google_audit": google_audit,
+    "capabilities": capabilities
 }
 
 print(json.dumps(payload, indent=2))

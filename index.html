@@ -253,6 +253,11 @@
     </div>
 
     <div class="card">
+      <h2>Capabilities</h2>
+      <div id="capabilitiesList">Loading...</div>
+    </div>
+
+    <div class="card">
       <h2>Task Summary</h2>
       <p id="taskHeadline" class="ok">Loading...</p>
       <div class="summary-grid">
@@ -453,6 +458,19 @@
       return div;
     }
 
+    function renderCapabilityItem(item) {
+      const div = document.createElement('div');
+      div.className = 'audit-item';
+      div.innerHTML = `
+        <div class="labels">
+          <span class="label ${auditStatusClass(item.status)}">${item.status || 'unknown'}</span>
+        </div>
+        <h3>${item.name || 'Unknown capability'}</h3>
+        <div class="muted">${item.detail || ''}</div>
+      `;
+      return div;
+    }
+
     function fillEmptyColumn(id, text) {
       const el = document.getElementById(id);
       if (!el.children.length) {
@@ -513,6 +531,14 @@
           googleAudit.services.forEach(item => googleAuditList.appendChild(renderAuditItem(item)));
         } else {
           googleAuditList.innerHTML = `<div class="empty">No Google audit data.</div>`;
+        }
+
+        const capabilitiesList = document.getElementById('capabilitiesList');
+        capabilitiesList.innerHTML = '';
+        if (Array.isArray(data.capabilities) && data.capabilities.length) {
+          data.capabilities.forEach(item => capabilitiesList.appendChild(renderCapabilityItem(item)));
+        } else {
+          capabilitiesList.innerHTML = `<div class="empty">No capability data.</div>`;
         }
 
         const sessionList = document.getElementById('sessionList');
@@ -630,6 +656,7 @@
         document.getElementById('googleAccount').textContent = 'Not available';
         document.getElementById('googleProfile').textContent = 'Not available';
         document.getElementById('googleAuditList').innerHTML = `<div class="empty">No Google audit data.</div>`;
+        document.getElementById('capabilitiesList').innerHTML = `<div class="empty">No capability data.</div>`;
         document.getElementById('taskHeadline').textContent = 'No pending tasks';
         document.getElementById('taskTotal').textContent = '0';
         document.getElementById('taskBacklog').textContent = '0';
