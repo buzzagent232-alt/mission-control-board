@@ -3,6 +3,8 @@ set -e
 
 REPO_DIR="$HOME/mission-control-board"
 SESSION_STORE="$HOME/.openclaw/agents/main/sessions/sessions.json"
+OPENCLAW_AGENTS_JSON="$(openclaw config get 'agents.list' 2>/dev/null | sed -n '/^\[/,$p')"
+export OPENCLAW_AGENTS_JSON
 OPENCLAW_CONFIG_JSON="$(openclaw config get 'agents.list' 2>/dev/null || echo '[]')"
 export OPENCLAW_CONFIG_JSON
 
@@ -38,11 +40,25 @@ for a in AGENT_REGISTRY:
         break
 
 import json
+import os
 import subprocess
 from pathlib import Path
 from datetime import datetime
 
 session_store = Path("$SESSION_STORE")
+raw_agents = os.environ.get("OPENCLAW_AGENTS_JSON", "[]")
+try:
+    AGENT_REGISTRY = json.loads(raw_agents) if raw_agents.strip() else []
+    if not isinstance(AGENT_REGISTRY, list):
+        AGENT_REGISTRY = []
+except Exception:
+    AGENT_REGISTRY = []
+
+MAIN_ALLOW_AGENTS = []
+for a in AGENT_REGISTRY:
+    if a.get("id") == "main":
+        MAIN_ALLOW_AGENTS = ((a.get("subagents") or {}).get("allowAgents")) or []
+        break
 
 task_candidates = [
     Path.home() / ".openclaw" / "workspace" / "tasks.json",
