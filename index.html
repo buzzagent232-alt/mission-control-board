@@ -50,7 +50,7 @@
     }
     .session {
       margin-top: 12px;
-      padding: 12px;
+      padding: 14px;
       border-radius: 10px;
       background: #10162a;
       border: 1px solid #2d3a62;
@@ -71,6 +71,42 @@
     }
     .labels {
       margin: 8px 0 10px 0;
+    }
+    .row {
+      margin: 8px 0;
+    }
+    .session-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+    }
+    .copy-btn {
+      background: #223158;
+      color: #e8ecf3;
+      border: 1px solid #3a4c7b;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .copy-btn:hover {
+      background: #2b3d6d;
+    }
+    .copy-btn.copied {
+      background: #1f5134;
+      border-color: #2d7a4c;
+    }
+    .small {
+      font-size: 12px;
+    }
+    .empty {
+      padding: 12px;
+      border-radius: 10px;
+      background: #10162a;
+      border: 1px dashed #33446f;
+      color: #9fb0d1;
     }
   </style>
 </head>
@@ -98,6 +134,7 @@
       <div><code>openclaw sessions</code></div>
       <div><code>openclaw sessions cleanup</code></div>
       <div><code>openclaw agent --agent main --message "Start a fresh session"</code></div>
+      <div><code>cd ~/mission-control-board && ./scripts/update_status.sh</code></div>
     </div>
 
     <div class="card">
@@ -112,6 +149,43 @@
       const d = new Date(ms);
       if (isNaN(d.getTime())) return String(ms);
       return d.toLocaleString();
+    }
+
+    function timeAgo(ms) {
+      if (!ms) return 'unknown';
+      const diff = Date.now() - Number(ms);
+      if (isNaN(diff) || diff < 0) return 'unknown';
+
+      const minute = 60 * 1000;
+      const hour = 60 * minute;
+      const day = 24 * hour;
+
+      if (diff < minute) return 'just now';
+      if (diff < hour) {
+        const n = Math.floor(diff / minute);
+        return n + ' minute' + (n === 1 ? '' : 's') + ' ago';
+      }
+      if (diff < day) {
+        const n = Math.floor(diff / hour);
+        return n + ' hour' + (n === 1 ? '' : 's') + ' ago';
+      }
+      const n = Math.floor(diff / day);
+      return n + ' day' + (n === 1 ? '' : 's') + ' ago';
+    }
+
+    async function copyText(text, button) {
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = button.textContent;
+        button.textContent = 'Copied';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = old;
+          button.classList.remove('copied');
+        }, 1200);
+      } catch {
+        alert('Could not copy to clipboard.');
+      }
     }
 
     async function loadStatus() {
@@ -131,7 +205,7 @@
         sessionList.innerHTML = '';
 
         if (Array.isArray(data.sessions) && data.sessions.length > 0) {
-          data.sessions.forEach(session => {
+          data.sessions.forEach((session, index) => {
             const div = document.createElement('div');
             div.className = 'session';
 
@@ -151,20 +225,33 @@
             });
 
             const tagHtml = tags.map(tag => `<span class="label">${tag}</span>`).join('');
+            const fileRow = session.session_file && session.session_file !== 'Unknown'
+              ? `<div class="row"><strong>Session File:</strong><br><span class="mono">${session.session_file}</span></div>`
+              : '';
 
             div.innerHTML = `
-              <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
-              <div class="labels">${tagHtml}</div>
-              <p><strong>Session ID:</strong><br><span class="mono">${session.session_id || 'Unknown'}</span></p>
-              <p><strong>Updated:</strong> ${formatTimestamp(session.updated_at)}</p>
-              <p><strong>Chat Type:</strong> ${session.chat_type || 'Unknown'}</p>
-              <p><strong>Session File:</strong><br><span class="mono">${session.session_file || 'Unknown'}</span></p>
+              <div class="session-top">
+                <div>
+                  <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
+                  <div class="labels">${tagHtml}</div>
+                </div>
+                <button class="copy-btn" data-session-id="${session.session_id || ''}">Copy Session ID</button>
+              </div>
+
+              <div class="row"><strong>Session ID:</strong><br><span class="mono">${session.session_id || 'Unknown'}</span></div>
+              <div class="row"><strong>Updated:</strong> ${formatTimestamp(session.updated_at)} <span class="muted small">(${timeAgo(session.updated_at)})</span></div>
+              <div class="row"><strong>Chat Type:</strong> ${session.chat_type || 'Unknown'}</div>
+              ${fileRow}
             `;
 
             sessionList.appendChild(div);
           });
+
+          sessionList.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => copyText(btn.dataset.sessionId, btn));
+          });
         } else {
-          sessionList.textContent = 'No sessions found.';
+          sessionList.innerHTML = `<div class="empty">No sessions found.</div>`;
         }
       } catch (err) {
         document.getElementById('boardStatus').textContent = 'Live (no status.json loaded)';
@@ -172,7 +259,7 @@
         document.getElementById('agentName').textContent = 'Not available';
         document.getElementById('sessionStore').textContent = 'Not available';
         document.getElementById('sessionCount').textContent = '0';
-        document.getElementById('sessionList').textContent = 'No status snapshot available yet.';
+        document.getElementById('sessionList').innerHTML = `<div class="empty">No status snapshot available yet.</div>`;
       }
     }
 
