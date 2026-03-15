@@ -12,7 +12,7 @@
       margin: 0;
       padding: 32px;
     }
-    h1, h2 {
+    h1, h2, h3 {
       margin-top: 0;
     }
     .grid {
@@ -41,9 +41,6 @@
       display: inline-block;
       margin: 4px 0;
     }
-    ul {
-      padding-left: 20px;
-    }
     a {
       color: #8ab4ff;
     }
@@ -51,13 +48,26 @@
       font-family: Menlo, Monaco, Consolas, monospace;
       word-break: break-word;
     }
-    .pill {
+    .session {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #10162a;
+      border: 1px solid #2d3a62;
+    }
+    .session h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .label {
       display: inline-block;
-      padding: 6px 10px;
+      margin-right: 8px;
+      margin-bottom: 6px;
+      padding: 4px 8px;
       border-radius: 999px;
       background: #1c2647;
       border: 1px solid #31406b;
-      margin: 4px 6px 0 0;
+      font-size: 12px;
     }
   </style>
 </head>
@@ -81,19 +91,26 @@
     </div>
 
     <div class="card">
-      <h2>Sessions</h2>
-      <div id="sessionList">Loading...</div>
+      <h2>Useful Local Commands</h2>
+      <div><code>openclaw sessions</code></div>
+      <div><code>openclaw sessions cleanup</code></div>
+      <div><code>openclaw agent --agent main --message "Start a fresh session"</code></div>
     </div>
 
     <div class="card">
-      <h2>Useful Local Commands</h2>
-      <div><code>openclaw sessions list</code></div>
-      <div><code>openclaw sessions cleanup</code></div>
-      <div><code>openclaw agent --agent main --message "Start a fresh session"</code></div>
+      <h2>Sessions</h2>
+      <div id="sessionList">Loading...</div>
     </div>
   </div>
 
   <script>
+    function formatTimestamp(ms) {
+      if (!ms) return 'Unknown';
+      const d = new Date(ms);
+      if (isNaN(d.getTime())) return String(ms);
+      return d.toLocaleString();
+    }
+
     async function loadStatus() {
       try {
         const response = await fetch('status.json?' + Date.now());
@@ -113,8 +130,22 @@
         if (Array.isArray(data.sessions) && data.sessions.length > 0) {
           data.sessions.forEach(session => {
             const div = document.createElement('div');
-            div.className = 'pill mono';
-            div.textContent = session;
+            div.className = 'session';
+
+            const label = session.label ? `<span class="label">${session.label}</span>` : '';
+            const provider = session.provider ? `<span class="label">${session.provider}</span>` : '';
+            const surface = session.surface ? `<span class="label">${session.surface}</span>` : '';
+            const channel = session.channel ? `<span class="label">${session.channel}</span>` : '';
+
+            div.innerHTML = `
+              <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
+              <div>${label}${provider}${surface}${channel}</div>
+              <p><strong>Session ID:</strong><br><span class="mono">${session.session_id || 'Unknown'}</span></p>
+              <p><strong>Updated:</strong> ${formatTimestamp(session.updated_at)}</p>
+              <p><strong>Chat Type:</strong> ${session.chat_type || 'Unknown'}</p>
+              <p><strong>Session File:</strong><br><span class="mono">${session.session_file || 'Unknown'}</span></p>
+            `;
+
             sessionList.appendChild(div);
           });
         } else {
