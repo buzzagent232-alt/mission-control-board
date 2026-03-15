@@ -54,14 +54,14 @@
       font-family: Menlo, Monaco, Consolas, monospace;
       word-break: break-word;
     }
-    .session, .task, .activity {
+    .session, .task, .activity, .audit-item {
       margin-top: 12px;
       padding: 14px;
       border-radius: 10px;
       background: #10162a;
       border: 1px solid #2d3a62;
     }
-    .session h3, .task h3, .activity h3 {
+    .session h3, .task h3, .activity h3, .audit-item h3 {
       font-size: 15px;
       margin-bottom: 8px;
     }
@@ -198,6 +198,22 @@
       border-color: #2d678f;
       color: #bfe7ff;
     }
+
+    .status-working {
+      background: #1d3a2a;
+      border-color: #2c6b48;
+      color: #b7f7ca;
+    }
+    .status-working-empty {
+      background: #18364a;
+      border-color: #2d678f;
+      color: #bfe7ff;
+    }
+    .status-blocked {
+      background: #4a1f26;
+      border-color: #8f3340;
+      color: #ffc8ce;
+    }
   </style>
 </head>
 <body>
@@ -219,6 +235,7 @@
     <div class="card">
       <h2>OpenClaw Summary</h2>
       <p><strong>Agent:</strong> <span id="agentName">Loading...</span></p>
+      <p><strong>OpenClaw Version:</strong> <span id="openclawVersion">Loading...</span></p>
       <p><strong>Session Store:</strong> <span id="sessionStore" class="mono">Loading...</span></p>
       <p><strong>Session Count:</strong> <span id="sessionCount">Loading...</span></p>
       <p><strong>Tasks Source:</strong> <span id="tasksSource" class="mono">Loading...</span></p>
@@ -226,6 +243,13 @@
         <button class="btn" id="copySessionStoreBtn">Copy Session Store Path</button>
         <button class="btn" id="copyTasksSourceBtn">Copy Tasks Source Path</button>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>Google Access Audit</h2>
+      <p><strong>Account:</strong> <span id="googleAccount">Loading...</span></p>
+      <p><strong>Profile:</strong> <span id="googleProfile">Loading...</span></p>
+      <div id="googleAuditList">Loading...</div>
     </div>
 
     <div class="card">
@@ -385,6 +409,14 @@
       return '';
     }
 
+    function auditStatusClass(status) {
+      const s = String(status || '').trim().toLowerCase();
+      if (s === 'working') return 'status-working';
+      if (s === 'working_empty') return 'status-working-empty';
+      if (s === 'blocked') return 'status-blocked';
+      return '';
+    }
+
     function renderTask(task) {
       const div = document.createElement('div');
       div.className = 'task';
@@ -404,6 +436,19 @@
         <h3>${task.title || 'Untitled task'}</h3>
         ${metaHtml}
         ${notes}
+      `;
+      return div;
+    }
+
+    function renderAuditItem(item) {
+      const div = document.createElement('div');
+      div.className = 'audit-item';
+      div.innerHTML = `
+        <div class="labels">
+          <span class="label ${auditStatusClass(item.status)}">${item.status || 'unknown'}</span>
+        </div>
+        <h3>${item.name || 'Unknown service'}</h3>
+        <div class="muted">${item.detail || ''}</div>
       `;
       return div;
     }
@@ -445,6 +490,7 @@
         document.getElementById('boardStatus').textContent = data.board_status || 'Live';
         document.getElementById('lastUpdated').textContent = data.last_updated || 'Unknown';
         document.getElementById('agentName').textContent = data.agent_name || 'Unknown';
+        document.getElementById('openclawVersion').textContent = data.openclaw_version || 'Unknown';
         document.getElementById('sessionStore').textContent = data.session_store || 'Unknown';
         document.getElementById('sessionCount').textContent = Array.isArray(data.sessions) ? data.sessions.length : 0;
         document.getElementById('tasksSource').textContent = data.tasks_source || 'No tasks.json found';
@@ -457,6 +503,17 @@
         document.querySelectorAll('.copy-cmd').forEach(btn => {
           btn.onclick = (e) => copyText(btn.dataset.copy || '', e.currentTarget);
         });
+
+        const googleAudit = data.google_audit || {};
+        document.getElementById('googleAccount').textContent = googleAudit.account || 'Unknown';
+        document.getElementById('googleProfile').textContent = googleAudit.profile || 'Unknown';
+        const googleAuditList = document.getElementById('googleAuditList');
+        googleAuditList.innerHTML = '';
+        if (Array.isArray(googleAudit.services) && googleAudit.services.length) {
+          googleAudit.services.forEach(item => googleAuditList.appendChild(renderAuditItem(item)));
+        } else {
+          googleAuditList.innerHTML = `<div class="empty">No Google audit data.</div>`;
+        }
 
         const sessionList = document.getElementById('sessionList');
         sessionList.innerHTML = '';
@@ -566,9 +623,13 @@
         document.getElementById('boardStatus').textContent = 'Live (no status.json loaded)';
         document.getElementById('lastUpdated').textContent = 'Not available';
         document.getElementById('agentName').textContent = 'Not available';
+        document.getElementById('openclawVersion').textContent = 'Not available';
         document.getElementById('sessionStore').textContent = 'Not available';
         document.getElementById('sessionCount').textContent = '0';
         document.getElementById('tasksSource').textContent = 'Not available';
+        document.getElementById('googleAccount').textContent = 'Not available';
+        document.getElementById('googleProfile').textContent = 'Not available';
+        document.getElementById('googleAuditList').innerHTML = `<div class="empty">No Google audit data.</div>`;
         document.getElementById('taskHeadline').textContent = 'No pending tasks';
         document.getElementById('taskTotal').textContent = '0';
         document.getElementById('taskBacklog').textContent = '0';

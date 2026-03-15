@@ -293,6 +293,20 @@ for candidate in task_candidates:
             tasks = []
         break
 
+google_audit = {
+    "account": "buzzagent232@gmail.com",
+    "profile": "default",
+    "services": [
+        {"name": "Gmail", "status": "working", "detail": "Search returned inbox results"},
+        {"name": "Calendar", "status": "working", "detail": "Calendars listed; events query succeeded"},
+        {"name": "Drive", "status": "working", "detail": "Drive listing returned files"},
+        {"name": "Docs", "status": "working", "detail": "Test document creation succeeded"},
+        {"name": "Sheets", "status": "working", "detail": "Test spreadsheet creation succeeded"},
+        {"name": "Tasks", "status": "working", "detail": "Task lists returned 'My Tasks'"},
+        {"name": "Contacts", "status": "working_empty", "detail": "API working; no contacts returned"}
+    ]
+}
+
 payload = {
     "board_status": "Live",
     "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -301,7 +315,9 @@ payload = {
     "tasks_source": tasks_source,
     "sessions": sessions,
     "tasks": tasks,
-    "recent_activity": recent_activity
+    "recent_activity": recent_activity,
+    "openclaw_version": "2026.3.13",
+    "google_audit": google_audit
 }
 
 print(json.dumps(payload, indent=2))
