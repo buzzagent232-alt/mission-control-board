@@ -69,6 +69,9 @@
       border: 1px solid #31406b;
       font-size: 12px;
     }
+    .labels {
+      margin: 8px 0 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -151,7 +154,7 @@
 
             div.innerHTML = `
               <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
-              <div>${tagHtml}</div>
+              <div class="labels">${tagHtml}</div>
               <p><strong>Session ID:</strong><br><span class="mono">${session.session_id || 'Unknown'}</span></p>
               <p><strong>Updated:</strong> ${formatTimestamp(session.updated_at)}</p>
               <p><strong>Chat Type:</strong> ${session.chat_type || 'Unknown'}</p>
