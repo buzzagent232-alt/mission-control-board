@@ -54,14 +54,14 @@
       font-family: Menlo, Monaco, Consolas, monospace;
       word-break: break-word;
     }
-    .session, .task {
+    .session, .task, .activity {
       margin-top: 12px;
       padding: 14px;
       border-radius: 10px;
       background: #10162a;
       border: 1px solid #2d3a62;
     }
-    .session h3, .task h3 {
+    .session h3, .task h3, .activity h3 {
       font-size: 15px;
       margin-bottom: 8px;
     }
@@ -153,6 +153,11 @@
       font-weight: bold;
       margin-bottom: 4px;
     }
+    .activity-text {
+      margin-top: 8px;
+      white-space: normal;
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
@@ -214,6 +219,11 @@
       <h2>Sessions</h2>
       <div id="sessionList">Loading...</div>
     </div>
+
+    <div class="card">
+      <h2>Recent Activity</h2>
+      <div id="recentActivity">Loading...</div>
+    </div>
   </div>
 
   <div class="card">
@@ -242,29 +252,31 @@
   <script>
     function formatTimestamp(ms) {
       if (!ms) return 'Unknown';
-      const d = new Date(ms);
+      const n = Number(ms);
+      const d = new Date(isNaN(n) ? ms : n);
       if (isNaN(d.getTime())) return String(ms);
       return d.toLocaleString();
     }
 
     function timeAgo(ms) {
       if (!ms) return 'unknown';
-      const diff = Date.now() - Number(ms);
+      const n = Number(ms);
+      const diff = Date.now() - (isNaN(n) ? Date.parse(ms) : n);
       if (isNaN(diff) || diff < 0) return 'unknown';
       const minute = 60 * 1000;
       const hour = 60 * minute;
       const day = 24 * hour;
       if (diff < minute) return 'just now';
       if (diff < hour) {
-        const n = Math.floor(diff / minute);
-        return n + ' minute' + (n === 1 ? '' : 's') + ' ago';
+        const x = Math.floor(diff / minute);
+        return x + ' minute' + (x === 1 ? '' : 's') + ' ago';
       }
       if (diff < day) {
-        const n = Math.floor(diff / hour);
-        return n + ' hour' + (n === 1 ? '' : 's') + ' ago';
+        const x = Math.floor(diff / hour);
+        return x + ' hour' + (x === 1 ? '' : 's') + ' ago';
       }
-      const n = Math.floor(diff / day);
-      return n + ' day' + (n === 1 ? '' : 's') + ' ago';
+      const x = Math.floor(diff / day);
+      return x + ' day' + (x === 1 ? '' : 's') + ' ago';
     }
 
     async function copyText(text, button) {
@@ -328,6 +340,23 @@
       }
     }
 
+    function renderActivityItem(item) {
+      const div = document.createElement('div');
+      div.className = 'activity';
+
+      const tags = [
+        item.role || 'event',
+        item.session_key || ''
+      ].filter(Boolean);
+
+      div.innerHTML = `
+        <div class="labels">${tags.map(x => `<span class="label">${x}</span>`).join('')}</div>
+        <div class="muted small">${item.timestamp ? `${formatTimestamp(item.timestamp)} (${timeAgo(item.timestamp)})` : 'No timestamp'}</div>
+        <div class="activity-text">${item.text || 'No text'}</div>
+      `;
+      return div;
+    }
+
     async function loadStatus() {
       try {
         const response = await fetch('status.json?' + Date.now());
@@ -382,6 +411,14 @@
           });
         } else {
           sessionList.innerHTML = `<div class="empty">No sessions found.</div>`;
+        }
+
+        const activityEl = document.getElementById('recentActivity');
+        activityEl.innerHTML = '';
+        if (Array.isArray(data.recent_activity) && data.recent_activity.length > 0) {
+          data.recent_activity.forEach(item => activityEl.appendChild(renderActivityItem(item)));
+        } else {
+          activityEl.innerHTML = `<div class="empty">No recent activity found.</div>`;
         }
 
         const cols = {
@@ -440,6 +477,7 @@
         document.getElementById('taskReview').textContent = '0';
         document.getElementById('taskDone').textContent = '0';
         document.getElementById('sessionList').innerHTML = `<div class="empty">No status snapshot available yet.</div>`;
+        document.getElementById('recentActivity').innerHTML = `<div class="empty">No recent activity found.</div>`;
         fillEmptyColumn('col-backlog', 'No pending tasks');
         fillEmptyColumn('col-in_progress', 'All clear');
         fillEmptyColumn('col-review', 'Nothing awaiting review');
