@@ -1,11 +1,68 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-15 13:11:16",
+  "last_updated": "2026-03-15 13:12:27",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
-  "agent_registry": [],
-  "main_allowed_specialists": [],
+  "agent_registry": [
+    {
+      "id": "main",
+      "default": true,
+      "name": "SOUL",
+      "workspace": "/Users/scottwalker/.openclaw/workspace",
+      "subagents": {
+        "allowAgents": [
+          "chief-of-staff",
+          "security",
+          "engineering",
+          "ops",
+          "qa"
+        ]
+      }
+    },
+    {
+      "id": "chief-of-staff",
+      "name": "chief-of-staff",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-chief-of-staff",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/chief-of-staff/agent",
+      "subagents": {
+        "allowAgents": [
+          "security"
+        ]
+      }
+    },
+    {
+      "id": "security",
+      "name": "security",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-security",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/security/agent"
+    },
+    {
+      "id": "engineering",
+      "name": "engineering",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-engineering",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/engineering/agent"
+    },
+    {
+      "id": "ops",
+      "name": "ops",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-ops",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/ops/agent"
+    },
+    {
+      "id": "qa",
+      "name": "qa",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-qa",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/qa/agent"
+    }
+  ],
+  "main_allowed_specialists": [
+    "chief-of-staff",
+    "security",
+    "engineering",
+    "ops",
+    "qa"
+  ],
   "sessions": [
     {
       "session_key": "agent:main:main",
