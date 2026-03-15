@@ -60,7 +60,8 @@
       margin-bottom: 8px;
     }
     .label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-right: 8px;
       margin-bottom: 6px;
       padding: 4px 8px;
@@ -68,9 +69,13 @@
       background: #1c2647;
       border: 1px solid #31406b;
       font-size: 12px;
+      line-height: 1.2;
     }
     .labels {
-      margin: 8px 0 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 12px 0;
     }
     .row {
       margin: 8px 0;
@@ -80,6 +85,10 @@
       justify-content: space-between;
       align-items: start;
       gap: 12px;
+    }
+    .session-head {
+      min-width: 0;
+      flex: 1;
     }
     .copy-btn {
       background: #223158;
@@ -188,6 +197,27 @@
       }
     }
 
+    function cleanedTags(session) {
+      const tags = [];
+      if (session.label) tags.push(session.label);
+      if (session.provider) tags.push(session.provider);
+
+      const surface = (session.surface || '').toLowerCase();
+      const channel = (session.channel || '').toLowerCase();
+      const provider = (session.provider || '').toLowerCase();
+
+      if (surface && surface !== provider) tags.push(session.surface);
+      if (channel && channel !== provider && channel !== surface) tags.push(session.channel);
+
+      const seen = new Set();
+      return tags.filter(tag => {
+        const key = String(tag).trim().toLowerCase();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
     async function loadStatus() {
       try {
         const response = await fetch('status.json?' + Date.now());
@@ -205,35 +235,24 @@
         sessionList.innerHTML = '';
 
         if (Array.isArray(data.sessions) && data.sessions.length > 0) {
-          data.sessions.forEach((session, index) => {
+          data.sessions.forEach((session) => {
             const div = document.createElement('div');
             div.className = 'session';
 
-            const rawTags = [
-              session.label || '',
-              session.provider || '',
-              session.surface || '',
-              session.channel || ''
-            ].filter(Boolean);
+            const tags = cleanedTags(session);
+            const tagHtml = tags.length
+              ? `<div class="labels">${tags.map(tag => `<span class="label">${tag}</span>`).join('')}</div>`
+              : '';
 
-            const seen = new Set();
-            const tags = rawTags.filter(tag => {
-              const key = String(tag).toLowerCase();
-              if (seen.has(key)) return false;
-              seen.add(key);
-              return true;
-            });
-
-            const tagHtml = tags.map(tag => `<span class="label">${tag}</span>`).join('');
             const fileRow = session.session_file && session.session_file !== 'Unknown'
               ? `<div class="row"><strong>Session File:</strong><br><span class="mono">${session.session_file}</span></div>`
               : '';
 
             div.innerHTML = `
               <div class="session-top">
-                <div>
+                <div class="session-head">
                   <h3 class="mono">${session.session_key || 'Unknown session'}</h3>
-                  <div class="labels">${tagHtml}</div>
+                  ${tagHtml}
                 </div>
                 <button class="copy-btn" data-session-id="${session.session_id || ''}">Copy Session ID</button>
               </div>
