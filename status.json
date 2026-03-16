@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-16 06:33:03",
+  "last_updated": "2026-03-16 08:25:45",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -81,6 +81,17 @@
   ],
   "sessions": [
     {
+      "session_key": "agent:main:main",
+      "session_id": "92b5e250-3396-4035-ad33-49b8c740ef21",
+      "updated_at": 1773666422647,
+      "chat_type": "direct",
+      "channel": "",
+      "label": "heartbeat",
+      "provider": "heartbeat",
+      "surface": "",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/92b5e250-3396-4035-ad33-49b8c740ef21.jsonl"
+    },
+    {
       "session_key": "agent:main:telegram:direct:8637753257",
       "session_id": "cd2d30ac-7fbe-44b4-b758-b209f29f0a5b",
       "updated_at": 1773660307385,
@@ -90,17 +101,6 @@
       "provider": "telegram",
       "surface": "telegram",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/cd2d30ac-7fbe-44b4-b758-b209f29f0a5b.jsonl"
-    },
-    {
-      "session_key": "agent:main:main",
-      "session_id": "b64cd88e-d513-44c7-ac9e-f55f37dfc240",
-      "updated_at": 1773603802843,
-      "chat_type": "direct",
-      "channel": "webchat",
-      "label": "",
-      "provider": "webchat",
-      "surface": "webchat",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/b64cd88e-d513-44c7-ac9e-f55f37dfc240.jsonl"
     },
     {
       "session_key": "agent:main:telegram:slash:8637753257",
@@ -147,15 +147,15 @@
   "recent_activity": [
     {
       "session_key": "agent:main:main",
-      "role": "assistant",
-      "text": "Welcome back. Today is Sunday, March 15th, 2026 at 2:42 PM Central Time. How can I assist you today? If you need help with anything specific or have a task in mind, feel free to let me know!",
-      "timestamp": "2026-03-15T19:43:22.824Z"
+      "role": "user",
+      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
+      "timestamp": "2026-03-16T12:30:15.765Z"
     },
     {
       "session_key": "agent:main:main",
       "role": "user",
-      "text": "A new session was started via /new or /reset. Run your Session Startup sequence - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - \u2026",
-      "timestamp": "2026-03-15T19:42:48.446Z"
+      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
+      "timestamp": "2026-03-16T11:51:17.771Z"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
