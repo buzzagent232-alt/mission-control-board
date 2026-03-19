@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-19 05:00:32",
+  "last_updated": "2026-03-19 08:48:50",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -83,7 +83,7 @@
     {
       "session_key": "agent:main:main",
       "session_id": "ecd76562-e9eb-4215-9e74-db9a800eaf4c",
-      "updated_at": 1773914424423,
+      "updated_at": 1773927196092,
       "chat_type": "direct",
       "channel": "",
       "label": "heartbeat",
@@ -176,8 +176,8 @@
       },
       {
         "name": "gog Auth",
-        "status": "working",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z true oauth"
+        "status": "blocked",
+        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z false refresh access token: Post \"https://oauth2.googleapis.com/token\": di\u2026"
       },
       {
         "name": "Gmail",
