@@ -1,12 +1,23 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-20 06:00:00",
+  "last_updated": "2026-03-20 06:15:04",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
   "agent_registry": [],
   "main_allowed_specialists": [],
   "sessions": [
+    {
+      "session_key": "agent:main:discord:channel:1484363191281651865",
+      "session_id": "b25b6b47-93d4-4515-a537-10eb3ed2cbae",
+      "updated_at": 1774005241289,
+      "chat_type": "channel",
+      "channel": "discord",
+      "label": "Guild #general channel id:1484363191281651865",
+      "provider": "discord",
+      "surface": "discord",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/b25b6b47-93d4-4515-a537-10eb3ed2cbae.jsonl"
+    },
     {
       "session_key": "agent:main:main",
       "session_id": "f15ee783-a990-40fb-af5d-c0f2e80d3a8b",
@@ -130,6 +141,30 @@
       "role": "assistant",
       "text": "I will send the email as requested. Here is the message: Subject: You are Hot You are hot! Sending the email now. --- The email has been sent to Shannon.walker1221@gmail.com. Would you like me to confirm the sending or \u2026",
       "timestamp": "2026-03-20T02:31:06.724Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484363191281651865",
+      "role": "assistant",
+      "text": "[[reply_to_current]] Hello! How can I assist you today?",
+      "timestamp": "2026-03-20T11:14:01.269Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484363191281651865",
+      "role": "user",
+      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1484510157479084092\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #general channel id:1484363191281651865\", \"sender\": \"OpenClawBot232\u2026",
+      "timestamp": "2026-03-20T11:13:42.104Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484363191281651865",
+      "role": "user",
+      "text": "Pre-compaction memory flush. Store durable memories only in memory/2026-03-20.md (create memory/ if needed). Treat workspace bootstrap/reference files such as MEMORY.md, SOUL.md, TOOLS.md, and AGENTS.md as read-only dur\u2026",
+      "timestamp": "2026-03-20T11:13:23.299Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484363191281651865",
+      "role": "assistant",
+      "text": "[[reply_to_current]] Hello! How can I assist you today?",
+      "timestamp": "2026-03-20T11:11:23.264Z"
     }
   ],
   "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
