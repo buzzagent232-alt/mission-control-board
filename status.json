@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-20 03:31:23",
+  "last_updated": "2026-03-20 05:44:56",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -9,14 +9,14 @@
   "sessions": [
     {
       "session_key": "agent:main:main",
-      "session_id": "28db4d43-fb69-4b4a-91d9-53932f4ba163",
-      "updated_at": 1773995391967,
+      "session_id": "f15ee783-a990-40fb-af5d-c0f2e80d3a8b",
+      "updated_at": 1774002616280,
       "chat_type": "direct",
-      "channel": "webchat",
+      "channel": "",
       "label": "heartbeat",
       "provider": "heartbeat",
-      "surface": "webchat",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/28db4d43-fb69-4b4a-91d9-53932f4ba163.jsonl"
+      "surface": "",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/f15ee783-a990-40fb-af5d-c0f2e80d3a8b.jsonl"
     },
     {
       "session_key": "agent:main:discord:channel:1484365051065405481",
@@ -86,26 +86,20 @@
     {
       "session_key": "agent:main:main",
       "role": "assistant",
-      "text": "Hello, Scott! I'm here to help you today. How can I assist you? My default model is ollama/qwen2.5:7b. Let me know what's on your mind!",
-      "timestamp": "2026-03-20T02:11:35.234Z"
+      "text": "HEARTBEAT_OK",
+      "timestamp": "2026-03-20T09:11:57.686Z"
     },
     {
       "session_key": "agent:main:main",
       "role": "toolResult",
-      "text": "# SOUL identity and channel behavior You are SOUL, the user-facing assistant for Scott Walker. ## Primary role - Help Scott directly. - Be clear, concise, practical, and professional. - Default to a direct answer. ## Te\u2026",
-      "timestamp": "2026-03-20T02:11:33.767Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "toolResult",
-      "text": "# IDENTITY.md Name: OpenClaw Agent Role: Helpful, concise, reliable assistant Presentation: Calm, direct, technical, professional Visible behavior: - Do not mention internal file loading or startup checks. - Do not ment\u2026",
-      "timestamp": "2026-03-20T02:11:33.766Z"
+      "text": "# Heartbeat rules for SOUL - Never send heartbeat, process, or orchestration messages to Telegram users. - Never spawn specialist agents for routine heartbeat checks. - If no action is required, return HEARTBEAT_OK. - I\u2026",
+      "timestamp": "2026-03-20T09:11:56.785Z"
     },
     {
       "session_key": "agent:main:main",
       "role": "user",
-      "text": "A new session was started via /new or /reset. Run your Session Startup sequence - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - \u2026",
-      "timestamp": "2026-03-20T02:11:18.527Z"
+      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
+      "timestamp": "2026-03-20T09:11:55.717Z"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
@@ -150,33 +144,33 @@
       },
       {
         "name": "gog Auth",
-        "status": "working",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z true oauth"
+        "status": "blocked",
+        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z false refresh access token: oauth2: \"invalid_grant\" \"Token has been expire\u2026"
       },
       {
         "name": "Gmail",
-        "status": "working",
-        "detail": "ID DATE FROM SUBJECT LABELS THREAD 19d089280836c6b1 2026-03-19 19:08 Discord <noreply@discord.com> Discord Password Changed UNREAD,CATEGORY_PERSONAL,INBOX - 19d0891eba727e78 2026-03-19 19:07 Discord <noreply@discord.com\u2026"
+        "status": "blocked",
+        "detail": "Get \"https://gmail.googleapis.com/gmail/v1/users/me/threads?alt=json&maxResults=10&prettyPrint=false&q=in%3Ainbox+newer_than%3A30d\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Calendar",
-        "status": "working",
-        "detail": "ID NAME ROLE buzzagent232@gmail.com buzzagent232@gmail.com owner"
+        "status": "blocked",
+        "detail": "Get \"https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json&maxResults=100&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Drive",
-        "status": "working",
-        "detail": "ID NAME TYPE SIZE MODIFIED 1oDNHMZtuoDgOZN6iRIN2-3b5JJEoDzQL7whPGQSaIEg Test Sheet file 1.0 KB 2026-03-15 15:46 1Pa_CVn4tzvJakXltO2U6FzIa2icWYsjZGbb2ebKQnmM Test Doc file 1.0 KB 2026-03-15 15:46"
+        "status": "blocked",
+        "detail": "Get \"https://www.googleapis.com/drive/v3/files?alt=json&corpora=allDrives&fields=nextPageToken%2C+files%28id%2C+name%2C+mimeType%2C+size%2C+modifiedTime%2C+parents%2C+webViewLink%29&includeItemsFromAllDrives=true&orderB\u2026"
       },
       {
         "name": "Tasks",
-        "status": "working",
-        "detail": "ID TITLE MTc3OTM4NDY2NTM2Nzc3MjcwMzE6MDow My Tasks"
+        "status": "blocked",
+        "detail": "Get \"https://tasks.googleapis.com/tasks/v1/users/@me/lists?alt=json&maxResults=100&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Contacts",
-        "status": "working_empty",
-        "detail": "No contacts"
+        "status": "blocked",
+        "detail": "Get \"https://people.googleapis.com/v1/people/me/connections?alt=json&pageSize=100&pageToken=&personFields=names%2CemailAddresses%2CphoneNumbers&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been exp\u2026"
       }
     ]
   },
