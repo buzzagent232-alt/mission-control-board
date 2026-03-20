@@ -1,12 +1,23 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-19 21:12:47",
+  "last_updated": "2026-03-19 21:27:53",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
   "agent_registry": [],
   "main_allowed_specialists": [],
   "sessions": [
+    {
+      "session_key": "agent:main:discord:channel:1484365051065405481",
+      "session_id": "f9aec348-30c4-45ce-a862-836b743895d0",
+      "updated_at": 1773973664748,
+      "chat_type": "channel",
+      "channel": "discord",
+      "label": "Guild #bot-test channel id:1484365051065405481",
+      "provider": "discord",
+      "surface": "discord",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/f9aec348-30c4-45ce-a862-836b743895d0.jsonl"
+    },
     {
       "session_key": "agent:main:main",
       "session_id": "28db4d43-fb69-4b4a-91d9-53932f4ba163",
@@ -101,6 +112,30 @@
       "role": "user",
       "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"448\", \"sender_id\": \"8637753257\", \"sender\": \"Scott Walker\", \"timestamp\": \"Tue 2026-03-17 04:09 CDT\" } ``` Sender (untrusted metadata): ```json { \"label\": \"\u2026",
       "timestamp": "2026-03-17T09:27:07.849Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484365051065405481",
+      "role": "user",
+      "text": "Pre-compaction memory flush. Store durable memories only in memory/2026-03-19.md (create memory/ if needed). Treat workspace bootstrap/reference files such as MEMORY.md, SOUL.md, TOOLS.md, and AGENTS.md as read-only dur\u2026",
+      "timestamp": "2026-03-20T02:27:44.964Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484365051065405481",
+      "role": "assistant",
+      "text": "The weather in Brentwood, Tennessee tomorrow is expected to be around 68\u00b0F (20\u00b0C) during the day with a high of 70\u00b0F (21\u00b0C), and it's forecasted to cool down to about 50\u00b0F (10\u00b0C) at night with a low of 49\u00b0F (9\u00b0C). There\u2026",
+      "timestamp": "2026-03-20T02:26:50.543Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484365051065405481",
+      "role": "user",
+      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1484377636300918924\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #bot-test channel id:1484365051065405481\", \"sender\": \"OpenClawBot23\u2026",
+      "timestamp": "2026-03-20T02:26:47.608Z"
+    },
+    {
+      "session_key": "agent:main:discord:channel:1484365051065405481",
+      "role": "user",
+      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1484377374861557962\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #bot-test channel id:1484365051065405481\", \"sender\": \"OpenClawBot23\u2026",
+      "timestamp": "2026-03-20T02:26:01.048Z"
     }
   ],
   "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
