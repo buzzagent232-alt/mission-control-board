@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-22 17:29:00",
+  "last_updated": "2026-03-22 17:44:04",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -180,17 +180,17 @@
       {
         "name": "gog Auth",
         "status": "blocked",
-        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z false refresh access token: Post \"https://oauth2.googleapis.com/token\": di\u2026"
+        "detail": "buzzagent232@gmail.com default appscript,calendar,chat,classroom,contacts,docs,drive,forms,gmail,people,sheets,slides,tasks 2026-03-13T10:14:17Z false refresh access token: oauth2: \"invalid_grant\" \"Token has been expire\u2026"
       },
       {
         "name": "Gmail",
         "status": "blocked",
-        "detail": "Get \"https://gmail.googleapis.com/gmail/v1/users/me/threads?alt=json&maxResults=10&prettyPrint=false&q=in%3Ainbox+newer_than%3A30d\": round trip: Post \"https://oauth2.googleapis.com/token\": dial tcp: lookup oauth2.google\u2026"
+        "detail": "Get \"https://gmail.googleapis.com/gmail/v1/users/me/threads?alt=json&maxResults=10&prettyPrint=false&q=in%3Ainbox+newer_than%3A30d\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Calendar",
         "status": "blocked",
-        "detail": "Get \"https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json&maxResults=100&prettyPrint=false\": round trip: Post \"https://oauth2.googleapis.com/token\": dial tcp: lookup oauth2.googleapis.com: no such host"
+        "detail": "Get \"https://www.googleapis.com/calendar/v3/users/me/calendarList?alt=json&maxResults=100&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Drive",
@@ -200,12 +200,12 @@
       {
         "name": "Tasks",
         "status": "blocked",
-        "detail": "Get \"https://tasks.googleapis.com/tasks/v1/users/@me/lists?alt=json&maxResults=100&prettyPrint=false\": round trip: Post \"https://oauth2.googleapis.com/token\": dial tcp: lookup oauth2.googleapis.com: no such host"
+        "detail": "Get \"https://tasks.googleapis.com/tasks/v1/users/@me/lists?alt=json&maxResults=100&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been expired or revoked.\""
       },
       {
         "name": "Contacts",
         "status": "blocked",
-        "detail": "Get \"https://people.googleapis.com/v1/people/me/connections?alt=json&pageSize=100&pageToken=&personFields=names%2CemailAddresses%2CphoneNumbers&prettyPrint=false\": round trip: Post \"https://oauth2.googleapis.com/token\":\u2026"
+        "detail": "Get \"https://people.googleapis.com/v1/people/me/connections?alt=json&pageSize=100&pageToken=&personFields=names%2CemailAddresses%2CphoneNumbers&prettyPrint=false\": round trip: oauth2: \"invalid_grant\" \"Token has been exp\u2026"
       }
     ]
   },
