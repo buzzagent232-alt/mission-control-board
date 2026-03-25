@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-25 05:37:10",
+  "last_updated": "2026-03-25 05:52:11",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -167,7 +167,7 @@
       "timestamp": "2026-03-20T11:30:22.470Z"
     }
   ],
-  "openclaw_version": "OpenClaw 2026.3.13 (61d171a)",
+  "openclaw_version": "OpenClaw 2026.3.23-2 (7ffe7e4)",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
