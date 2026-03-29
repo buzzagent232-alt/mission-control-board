@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-28 18:49:49",
+  "last_updated": "2026-03-28 19:04:51",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -10,7 +10,7 @@
     {
       "session_key": "agent:main:main",
       "session_id": "2d52cb31-4123-402e-8897-08107a15a6f2",
-      "updated_at": 1774740511326,
+      "updated_at": 1774742283261,
       "chat_type": "direct",
       "channel": "",
       "label": "heartbeat",
@@ -107,6 +107,12 @@
   "recent_activity": [
     {
       "session_key": "agent:main:main",
+      "role": "user",
+      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
+      "timestamp": "2026-03-28T23:58:03.259Z"
+    },
+    {
+      "session_key": "agent:main:main",
       "role": "toolResult",
       "text": "# Heartbeat rules for SOUL - Never send heartbeat, process, or orchestration messages to Telegram users. - Never spawn specialist agents for routine heartbeat checks. - If no action is required, return HEARTBEAT_OK. - I\u2026",
       "timestamp": "2026-03-28T16:50:46.572Z"
@@ -122,12 +128,6 @@
       "role": "assistant",
       "text": "HEARTBEAT_OK",
       "timestamp": "2026-03-28T09:27:23.157Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "toolResult",
-      "text": "# Heartbeat rules for SOUL - Never send heartbeat, process, or orchestration messages to Telegram users. - Never spawn specialist agents for routine heartbeat checks. - If no action is required, return HEARTBEAT_OK. - I\u2026",
-      "timestamp": "2026-03-28T09:27:22.460Z"
     },
     {
       "session_key": "agent:main:telegram:direct:8637753257",
