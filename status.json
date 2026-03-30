@@ -1,12 +1,23 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-30 05:24:16",
+  "last_updated": "2026-03-30 05:39:17",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
   "agent_registry": [],
   "main_allowed_specialists": [],
   "sessions": [
+    {
+      "session_key": "agent:main:discord:channel:1485419068927508684",
+      "session_id": "e30616f7-f09f-4299-8e7d-489cd9c59d98",
+      "updated_at": 1774866774428,
+      "chat_type": "channel",
+      "channel": "discord",
+      "label": "Guild #research channel id:1485419068927508684",
+      "provider": "discord",
+      "surface": "discord",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/e30616f7-f09f-4299-8e7d-489cd9c59d98.jsonl"
+    },
     {
       "session_key": "agent:main:main",
       "session_id": "379fd2af-8baf-4753-9d81-9a921ca9b480",
@@ -17,17 +28,6 @@
       "provider": "heartbeat",
       "surface": "",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/379fd2af-8baf-4753-9d81-9a921ca9b480.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "session_id": "e30616f7-f09f-4299-8e7d-489cd9c59d98",
-      "updated_at": 1774866115501,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #research channel id:1485419068927508684",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/e30616f7-f09f-4299-8e7d-489cd9c59d98.jsonl"
     },
     {
       "session_key": "agent:main:discord:channel:1484363191281651865",
