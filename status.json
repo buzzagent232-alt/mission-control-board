@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-03-30 19:56:29",
+  "last_updated": "2026-03-30 20:11:32",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -16,96 +16,7 @@
     }
   ],
   "main_allowed_specialists": [],
-  "sessions": [
-    {
-      "session_key": "agent:main:main",
-      "session_id": "379fd2af-8baf-4753-9d81-9a921ca9b480",
-      "updated_at": 1774916176690,
-      "chat_type": "direct",
-      "channel": "",
-      "label": "heartbeat",
-      "provider": "heartbeat",
-      "surface": "",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/379fd2af-8baf-4753-9d81-9a921ca9b480.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485418969761583254",
-      "session_id": "d78cc74f-d9c5-4347-b7a1-cfca96d2fea3",
-      "updated_at": 1774916175172,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #chief-of-staff channel id:1485418969761583254",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/d78cc74f-d9c5-4347-b7a1-cfca96d2fea3.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "session_id": "f6dcedbb-8ce6-4e0f-9cfb-bcd9545c71c8",
-      "updated_at": 1774896519804,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "discord:channel:1485419027135463514",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/f6dcedbb-8ce6-4e0f-9cfb-bcd9545c71c8.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "session_id": "e30616f7-f09f-4299-8e7d-489cd9c59d98",
-      "updated_at": 1774888970151,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #research channel id:1485419068927508684",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/e30616f7-f09f-4299-8e7d-489cd9c59d98.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484363191281651865",
-      "session_id": "b25b6b47-93d4-4515-a537-10eb3ed2cbae",
-      "updated_at": 1774791011389,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #bot-test channel id:1484363191281651865",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/b25b6b47-93d4-4515-a537-10eb3ed2cbae.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484365051065405481",
-      "session_id": "f9aec348-30c4-45ce-a862-836b743895d0",
-      "updated_at": 1774120754378,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #bot-test channel id:1484365051065405481",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/f9aec348-30c4-45ce-a862-836b743895d0.jsonl"
-    },
-    {
-      "session_key": "agent:main:telegram:direct:8637753257",
-      "session_id": "789e4184-c6c4-48c1-af4b-f4247c50b601",
-      "updated_at": 1773740600824,
-      "chat_type": "direct",
-      "channel": "telegram",
-      "label": "Scott Walker (@sdwalk2) id:8637753257",
-      "provider": "telegram",
-      "surface": "telegram",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/789e4184-c6c4-48c1-af4b-f4247c50b601.jsonl"
-    },
-    {
-      "session_key": "agent:main:telegram:slash:8637753257",
-      "session_id": "c55685fc-8304-4574-8f8d-ec5f442b28c1",
-      "updated_at": 1773015745098,
-      "chat_type": "",
-      "channel": "",
-      "label": "Scott Walker",
-      "provider": "telegram",
-      "surface": "telegram",
-      "session_file": ""
-    }
-  ],
+  "sessions": [],
   "tasks": [
     {
       "title": "Validate Mission Control board",
@@ -136,80 +47,7 @@
       "priority": "low"
     }
   ],
-  "recent_activity": [
-    {
-      "session_key": "agent:main:main",
-      "role": "toolResult",
-      "text": "# Heartbeat rules for SOUL - Never send heartbeat, process, or orchestration messages to Telegram users. - Never spawn specialist agents for routine heartbeat checks. - If no action is required, return HEARTBEAT_OK. - I\u2026",
-      "timestamp": "2026-03-31T00:20:18.038Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "user",
-      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
-      "timestamp": "2026-03-31T00:16:16.688Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "user",
-      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
-      "timestamp": "2026-03-30T19:41:09.194Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "user",
-      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
-      "timestamp": "2026-03-30T16:11:32.978Z"
-    },
-    {
-      "session_key": "agent:main:telegram:direct:8637753257",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"448\", \"sender_id\": \"8637753257\", \"sender\": \"Scott Walker\", \"timestamp\": \"Tue 2026-03-17 04:09 CDT\" } ``` Sender (untrusted metadata): ```json { \"label\": \"\u2026",
-      "timestamp": "2026-03-17T09:27:07.849Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484365051065405481",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1484994414454640853\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #bot-test channel id:1484365051065405481\", \"sender\": \"OpenClawBot23\u2026",
-      "timestamp": "2026-03-21T19:19:14.565Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484365051065405481",
-      "role": "user",
-      "text": "Pre-compaction memory flush. Store durable memories only in memory/2026-03-21.md (create memory/ if needed). Treat workspace bootstrap/reference files such as MEMORY.md, SOUL.md, TOOLS.md, and AGENTS.md as read-only dur\u2026",
-      "timestamp": "2026-03-21T19:18:42.307Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484365051065405481",
-      "role": "assistant",
-      "text": "Hello! It seems you're running some tests. How can I assist with your testing today?",
-      "timestamp": "2026-03-21T19:18:41.550Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484365051065405481",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1484994391956394225\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #bot-test channel id:1484365051065405481\", \"sender\": \"OpenClawBot23\u2026",
-      "timestamp": "2026-03-21T19:18:10.025Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484363191281651865",
-      "role": "compaction",
-      "text": "## Decisions No prior history. ## Open TODOs None. ## Constraints/Rules None. ## Pending user asks None. ## Exact identifiers None captured.",
-      "timestamp": "2026-03-29T13:30:11.355Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484363191281651865",
-      "role": "assistant",
-      "text": "[[reply_to_current]] Yes, I'm here and ready to help! What would you like to test?",
-      "timestamp": "2026-03-29T13:30:11.340Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1484363191281651865",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1487805782194913442\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #bot-test channel id:1484363191281651865\", \"sender\": \"OpenClawBot23\u2026",
-      "timestamp": "2026-03-29T13:29:01.202Z"
-    }
-  ],
+  "recent_activity": [],
   "openclaw_version": "OpenClaw 2026.3.28 (f9b1079)",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
