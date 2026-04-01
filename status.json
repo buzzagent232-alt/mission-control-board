@@ -1,12 +1,23 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-01 00:49:34",
+  "last_updated": "2026-04-01 01:04:36",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
   "agent_registry": [],
   "main_allowed_specialists": [],
   "sessions": [
+    {
+      "session_key": "agent:main:main",
+      "session_id": "8f9699a3-0ca5-4d6b-b474-370b25f29786",
+      "updated_at": 1775023024760,
+      "chat_type": "direct",
+      "channel": "",
+      "label": "heartbeat",
+      "provider": "heartbeat",
+      "surface": "",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/8f9699a3-0ca5-4d6b-b474-370b25f29786.jsonl"
+    },
     {
       "session_key": "agent:main:cron:41341ed9-f48c-4034-8b71-85e2c4491017",
       "session_id": "5b617a89-0909-4058-b515-0b4f3415e562",
@@ -28,17 +39,6 @@
       "provider": "",
       "surface": "",
       "session_file": ""
-    },
-    {
-      "session_key": "agent:main:main",
-      "session_id": "8f9699a3-0ca5-4d6b-b474-370b25f29786",
-      "updated_at": 1775021224756,
-      "chat_type": "direct",
-      "channel": "",
-      "label": "heartbeat",
-      "provider": "heartbeat",
-      "surface": "",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/8f9699a3-0ca5-4d6b-b474-370b25f29786.jsonl"
     },
     {
       "session_key": "agent:main:cron:41341ed9-f48c-4034-8b71-85e2c4491017:run:98acee48-79c9-4b39-94e0-7ec1bf842703",
