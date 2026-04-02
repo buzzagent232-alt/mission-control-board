@@ -1,12 +1,45 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-02 05:38:43",
+  "last_updated": "2026-04-02 05:53:46",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
   "agent_registry": [],
   "main_allowed_specialists": [],
   "sessions": [
+    {
+      "session_key": "agent:main:discord:channel:1485419027135463514",
+      "session_id": "1141bedf-0036-463d-a388-e0946e81d119",
+      "updated_at": 1775127221323,
+      "chat_type": "channel",
+      "channel": "discord",
+      "label": "Guild #1485419027135463514 channel id:1485419027135463514",
+      "provider": "discord",
+      "surface": "discord",
+      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/1141bedf-0036-463d-a388-e0946e81d119.jsonl"
+    },
+    {
+      "session_key": "agent:main:cron:6459d811-9298-4adc-bb94-9a78e0da0799",
+      "session_id": "c45a936d-32ab-4c09-919a-19985233b22e",
+      "updated_at": 1775126700753,
+      "chat_type": "",
+      "channel": "",
+      "label": "",
+      "provider": "",
+      "surface": "",
+      "session_file": ""
+    },
+    {
+      "session_key": "agent:main:cron:6459d811-9298-4adc-bb94-9a78e0da0799:run:c45a936d-32ab-4c09-919a-19985233b22e",
+      "session_id": "c45a936d-32ab-4c09-919a-19985233b22e",
+      "updated_at": 1775126700753,
+      "chat_type": "",
+      "channel": "",
+      "label": "",
+      "provider": "",
+      "surface": "",
+      "session_file": ""
+    },
     {
       "session_key": "agent:main:main",
       "session_id": "36b1d660-379d-402c-aab0-15fbb25c7b57",
@@ -17,17 +50,6 @@
       "provider": "heartbeat",
       "surface": "",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/36b1d660-379d-402c-aab0-15fbb25c7b57.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "session_id": "1141bedf-0036-463d-a388-e0946e81d119",
-      "updated_at": 1775099463729,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #engineering channel id:1485419027135463514",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/1141bedf-0036-463d-a388-e0946e81d119.jsonl"
     },
     {
       "session_key": "agent:main:cron:41341ed9-f48c-4034-8b71-85e2c4491017",
