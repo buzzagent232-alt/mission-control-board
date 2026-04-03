@@ -1,10 +1,73 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-03 15:30:25",
+  "last_updated": "2026-04-03 15:45:27",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
-  "agent_registry": [],
+  "agent_registry": [
+    {
+      "id": "chief-of-staff",
+      "name": "Chief of Staff",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-chief-of-staff",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      },
+      "subagents": {
+        "allowAgents": [
+          "*"
+        ],
+        "model": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-engineering",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-research",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "comms",
+      "name": "Comms",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-comms",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-security",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "quality-control",
+      "name": "Quality Control",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-quality-control",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-strategy",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    }
+  ],
   "main_allowed_specialists": [],
   "sessions": [
     {
@@ -211,7 +274,7 @@
       "timestamp": "2026-04-02T20:50:09.910Z"
     }
   ],
-  "openclaw_version": "OpenClaw 2026.3.31 (213a704)",
+  "openclaw_version": "OpenClaw 2026.4.2 (d74a122)",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
     "profile": "default",
