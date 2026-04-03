@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-03 16:45:36",
+  "last_updated": "2026-04-03 17:00:38",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -10,7 +10,7 @@
       "name": "Chief of Staff",
       "workspace": "/Users/scottwalker/.openclaw/workspace-chief-of-staff",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       },
       "subagents": {
         "allowAgents": [
@@ -24,7 +24,7 @@
       "name": "Engineering",
       "workspace": "/Users/scottwalker/.openclaw/workspace-engineering",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     },
     {
@@ -32,7 +32,7 @@
       "name": "Research",
       "workspace": "/Users/scottwalker/.openclaw/workspace-research",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     },
     {
@@ -40,7 +40,7 @@
       "name": "Comms",
       "workspace": "/Users/scottwalker/.openclaw/workspace-comms",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     },
     {
@@ -48,7 +48,7 @@
       "name": "Security",
       "workspace": "/Users/scottwalker/.openclaw/workspace-security",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     },
     {
@@ -56,7 +56,7 @@
       "name": "Quality Control",
       "workspace": "/Users/scottwalker/.openclaw/workspace-quality-control",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Strategy",
       "workspace": "/Users/scottwalker/.openclaw/workspace-strategy",
       "model": {
-        "primary": "ollama/qwen2.5:72b"
+        "primary": "ollama/qwen2.5:32b"
       }
     }
   ],
@@ -124,50 +124,6 @@
       "provider": "discord",
       "surface": "discord",
       "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/0162de6e-f4b5-4080-aa3f-bbb382455999.jsonl"
-    },
-    {
-      "session_key": "agent:main:cron:6459d811-9298-4adc-bb94-9a78e0da0799",
-      "session_id": "c45a936d-32ab-4c09-919a-19985233b22e",
-      "updated_at": 1775126700753,
-      "chat_type": "",
-      "channel": "",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": ""
-    },
-    {
-      "session_key": "agent:main:cron:6459d811-9298-4adc-bb94-9a78e0da0799:run:c45a936d-32ab-4c09-919a-19985233b22e",
-      "session_id": "c45a936d-32ab-4c09-919a-19985233b22e",
-      "updated_at": 1775126700753,
-      "chat_type": "",
-      "channel": "",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": ""
-    },
-    {
-      "session_key": "agent:main:cron:41341ed9-f48c-4034-8b71-85e2c4491017",
-      "session_id": "969a910b-0716-4ff2-a84e-4ae190169a03",
-      "updated_at": 1775097866962,
-      "chat_type": "",
-      "channel": "",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": ""
-    },
-    {
-      "session_key": "agent:main:cron:41341ed9-f48c-4034-8b71-85e2c4491017:run:969a910b-0716-4ff2-a84e-4ae190169a03",
-      "session_id": "969a910b-0716-4ff2-a84e-4ae190169a03",
-      "updated_at": 1775097866679,
-      "chat_type": "",
-      "channel": "",
-      "label": "",
-      "provider": "",
-      "surface": "",
-      "session_file": ""
     }
   ],
   "tasks": [
