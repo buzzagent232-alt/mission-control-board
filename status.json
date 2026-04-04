@@ -1,10 +1,197 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-04 08:17:45",
+  "last_updated": "2026-04-04 08:32:47",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
-  "agent_registry": [],
+  "agent_registry": [
+    {
+      "id": "chief-of-staff",
+      "name": "Chief of Staff",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-chief-of-staff",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      },
+      "subagents": {
+        "allowAgents": [
+          "*"
+        ],
+        "model": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-engineering",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-research",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "comms",
+      "name": "Comms",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-comms",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-security",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "quality-control",
+      "name": "Quality Control",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-quality-control",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "strategy",
+      "name": "Strategy",
+      "workspace": "/Users/scottwalker/.openclaw/workspace-strategy",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-chief-of-staff",
+      "name": "MissionKit Chief of Staff",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-chief-of-staff",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      },
+      "subagents": {
+        "allowAgents": [
+          "*"
+        ],
+        "model": "ollama/qwen2.5:32b"
+      }
+    },
+    {
+      "id": "mk-engineering",
+      "name": "MissionKit Engineering",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-engineering",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-research",
+      "name": "MissionKit Research",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-research",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-comms",
+      "name": "MissionKit Comms",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-comms",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-security",
+      "name": "MissionKit Security",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-security",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-quality-control",
+      "name": "MissionKit Quality Control",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-quality-control",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "mk-strategy",
+      "name": "MissionKit Strategy",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/mk-strategy",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-chief-of-staff",
+      "name": "InsurFrontier Chief of Staff",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-chief-of-staff",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      },
+      "subagents": {
+        "allowAgents": [
+          "*"
+        ],
+        "model": "ollama/qwen2.5:32b"
+      }
+    },
+    {
+      "id": "if-engineering",
+      "name": "InsurFrontier Engineering",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-engineering",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-research",
+      "name": "InsurFrontier Research",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-research",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-comms",
+      "name": "InsurFrontier Comms",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-comms",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-security",
+      "name": "InsurFrontier Security",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-security",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-quality-control",
+      "name": "InsurFrontier Quality Control",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-quality-control",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    },
+    {
+      "id": "if-strategy",
+      "name": "InsurFrontier Strategy",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/if-strategy",
+      "model": {
+        "primary": "ollama/qwen2.5:72b"
+      }
+    }
+  ],
   "main_allowed_specialists": [],
   "sessions": [
     {
