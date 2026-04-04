@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-04 13:03:25",
+  "last_updated": "2026-04-04 13:18:27",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -199,63 +199,7 @@
     }
   ],
   "main_allowed_specialists": [],
-  "sessions": [
-    {
-      "session_key": "agent:main:discord:channel:1488340125539631175",
-      "session_id": "bfe33ef4-7458-42fa-9952-96f06f609f61",
-      "updated_at": 1775247632332,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #chief-of-staff channel id:1488340125539631175",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/bfe33ef4-7458-42fa-9952-96f06f609f61.jsonl"
-    },
-    {
-      "session_key": "agent:main:main",
-      "session_id": "81f55949-d745-4284-ab21-a383db80d85a",
-      "updated_at": 1775247488604,
-      "chat_type": "direct",
-      "channel": "",
-      "label": "heartbeat",
-      "provider": "heartbeat",
-      "surface": "",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/81f55949-d745-4284-ab21-a383db80d85a.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "session_id": "1141bedf-0036-463d-a388-e0946e81d119",
-      "updated_at": 1775183523811,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #engineering channel id:1485419027135463514",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/1141bedf-0036-463d-a388-e0946e81d119.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1486521305011454135",
-      "session_id": "243286e1-1e89-476b-b188-6dbb5706c210",
-      "updated_at": 1775163009946,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #faith channel id:1486521305011454135",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/243286e1-1e89-476b-b188-6dbb5706c210.jsonl"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "session_id": "0162de6e-f4b5-4080-aa3f-bbb382455999",
-      "updated_at": 1775127476557,
-      "chat_type": "channel",
-      "channel": "discord",
-      "label": "Guild #research channel id:1485419068927508684",
-      "provider": "discord",
-      "surface": "discord",
-      "session_file": "/Users/scottwalker/.openclaw/agents/main/sessions/0162de6e-f4b5-4080-aa3f-bbb382455999.jsonl"
-    }
-  ],
+  "sessions": [],
   "tasks": [
     {
       "title": "Validate Mission Control board",
@@ -286,80 +230,7 @@
       "priority": "low"
     }
   ],
-  "recent_activity": [
-    {
-      "session_key": "agent:main:main",
-      "role": "assistant",
-      "text": "HEARTBEAT_OK",
-      "timestamp": "2026-04-03T09:17:45.182Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "toolResult",
-      "text": "# Heartbeat rules for SOUL - Never send heartbeat, process, or orchestration messages to Telegram users. - Never spawn specialist agents for routine heartbeat checks. - If no action is required, return HEARTBEAT_OK. - I\u2026",
-      "timestamp": "2026-04-03T09:17:40.020Z"
-    },
-    {
-      "session_key": "agent:main:main",
-      "role": "user",
-      "text": "Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /U\u2026",
-      "timestamp": "2026-04-03T09:17:37.842Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "role": "assistant",
-      "text": "Hello Scott, it looks like there's a bit of repetition in your messages. How can I assist you today with the image processing task or anything else?",
-      "timestamp": "2026-04-03T02:32:03.773Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1489452259921363026\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #engineering channel id:1485419027135463514\", \"sender\": \"Scott\", \"t\u2026",
-      "timestamp": "2026-04-03T02:31:48.921Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "role": "compaction",
-      "text": "## Goal [The user is seeking assistance in solving a specific coding problem related to optimizing image processing speed using Python's OpenCV library.] ## Constraints & Preferences - [User prefers solutions that are n\u2026",
-      "timestamp": "2026-04-03T02:31:48.911Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419027135463514",
-      "role": "assistant",
-      "text": "Hello Scott, how can I assist you today?",
-      "timestamp": "2026-04-02T10:54:22.053Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "role": "assistant",
-      "text": "[[reply_to_current]] Hello, Scott. It looks like you're in the #research channel now. How can I assist you today?",
-      "timestamp": "2026-04-02T10:57:56.524Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "role": "user",
-      "text": "Conversation info (untrusted metadata): ```json { \"message_id\": \"1489217179931906279\", \"sender_id\": \"1480510173612343436\", \"conversation_label\": \"Guild #research channel id:1485419068927508684\", \"sender\": \"Scott\", \"time\u2026",
-      "timestamp": "2026-04-02T10:57:42.952Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "role": "compaction",
-      "text": "## Goal [The user wants the AI assistant to help identify why a Python script is producing unexpected results when running on a specific dataset.] ## Constraints & Preferences - [The user would prefer if the solution ca\u2026",
-      "timestamp": "2026-04-02T10:57:42.943Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1485419068927508684",
-      "role": "assistant",
-      "text": "Hello, Scott. How can I assist you today?",
-      "timestamp": "2026-04-02T10:54:32.797Z"
-    },
-    {
-      "session_key": "agent:main:discord:channel:1486521305011454135",
-      "role": "assistant",
-      "text": "A prayer for guidance and wisdom can be deeply personal, but here is a general template you might find helpful. This prayer acknowledges the need for divine direction and asks for both understanding and discernment in d\u2026",
-      "timestamp": "2026-04-02T20:50:09.910Z"
-    }
-  ],
+  "recent_activity": [],
   "openclaw_version": "OpenClaw 2026.4.2 (d74a122)",
   "google_audit": {
     "account": "buzzagent232@gmail.com",
