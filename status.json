@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-07 06:50:57",
+  "last_updated": "2026-04-07 07:05:59",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -224,6 +224,13 @@
       "workspace": "/Users/scottwalker/.openclaw/workspaces/personal-strategy",
       "agentDir": "/Users/scottwalker/.openclaw/agents/personal-strategy/agent",
       "model": "ollama/qwen3.5:35b-a3b-nothink"
+    },
+    {
+      "id": "soul-optimizer",
+      "name": "soul-optimizer",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/soul-optimizer",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/soul-optimizer/agent",
+      "model": "ollama/qwen3.5:122b-a10b-nothink"
     }
   ],
   "main_allowed_specialists": [],
