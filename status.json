@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-12 09:07:52",
+  "last_updated": "2026-04-12 09:22:55",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -231,6 +231,33 @@
       "workspace": "/Users/scottwalker/.openclaw/workspaces/soul-optimizer",
       "agentDir": "/Users/scottwalker/.openclaw/agents/soul-optimizer/agent",
       "model": "openai-codex/gpt-5.4"
+    },
+    {
+      "id": "chair-council",
+      "name": "chair-council",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/chair-council",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/chair-council/agent",
+      "model": {
+        "primary": "openai-codex/gpt-5.4"
+      }
+    },
+    {
+      "id": "strategist-council",
+      "name": "strategist-council",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/strategist-council",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/strategist-council/agent",
+      "model": {
+        "primary": "openrouter/deepseek/deepseek-v3.2"
+      }
+    },
+    {
+      "id": "challenger-council",
+      "name": "challenger-council",
+      "workspace": "/Users/scottwalker/.openclaw/workspaces/challenger-council",
+      "agentDir": "/Users/scottwalker/.openclaw/agents/challenger-council/agent",
+      "model": {
+        "primary": "openrouter/deepseek/deepseek-v3.2"
+      }
     }
   ],
   "main_allowed_specialists": [],
