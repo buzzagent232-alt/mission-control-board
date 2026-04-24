@@ -1,6 +1,6 @@
 {
   "board_status": "Live",
-  "last_updated": "2026-04-24 06:00:00",
+  "last_updated": "2026-04-24 06:15:04",
   "agent_name": "main",
   "session_store": "/Users/scottwalker/.openclaw/agents/main/sessions/sessions.json",
   "tasks_source": "/Users/scottwalker/.openclaw/workspace/tasks.json",
@@ -202,35 +202,45 @@
       "name": "personal-cos",
       "workspace": "/Users/scottwalker/.openclaw/workspaces/personal-cos",
       "agentDir": "/Users/scottwalker/.openclaw/agents/personal-cos/agent",
-      "model": "openai-codex/gpt-5.4"
+      "model": {
+        "primary": "openai-codex/gpt-5.4"
+      }
     },
     {
       "id": "faith",
       "name": "faith",
       "workspace": "/Users/scottwalker/.openclaw/workspaces/faith",
       "agentDir": "/Users/scottwalker/.openclaw/agents/faith/agent",
-      "model": "ollama/qwen3.5:35b-a3b-nothink"
+      "model": {
+        "primary": "ollama/qwen3.5:35b-a3b-nothink"
+      }
     },
     {
       "id": "personal-research",
       "name": "personal-research",
       "workspace": "/Users/scottwalker/.openclaw/workspaces/personal-research",
       "agentDir": "/Users/scottwalker/.openclaw/agents/personal-research/agent",
-      "model": "ollama/qwen3.5:35b-a3b-nothink"
+      "model": {
+        "primary": "ollama/qwen3.5:35b-a3b-nothink"
+      }
     },
     {
       "id": "personal-strategy",
       "name": "personal-strategy",
       "workspace": "/Users/scottwalker/.openclaw/workspaces/personal-strategy",
       "agentDir": "/Users/scottwalker/.openclaw/agents/personal-strategy/agent",
-      "model": "ollama/qwen3.5:35b-a3b-nothink"
+      "model": {
+        "primary": "ollama/qwen3.5:35b-a3b-nothink"
+      }
     },
     {
       "id": "soul-optimizer",
       "name": "soul-optimizer",
       "workspace": "/Users/scottwalker/.openclaw/workspaces/soul-optimizer",
       "agentDir": "/Users/scottwalker/.openclaw/agents/soul-optimizer/agent",
-      "model": "openai-codex/gpt-5.4"
+      "model": {
+        "primary": "openai-codex/gpt-5.4"
+      }
     },
     {
       "id": "chair-council",
